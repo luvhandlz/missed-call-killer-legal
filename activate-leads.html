@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Activate Lead Capture</title>
+<style>
+  :root{--ink:#0f172a;--soft:#475569;--brand:#2563eb;--brand-dark:#1d4ed8;--navy:#0b1220;--line:#e6ebf2;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font);background:var(--navy);color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{background:#fff;border-radius:20px;max-width:520px;width:100%;padding:38px 34px;box-shadow:0 30px 70px rgba(0,0,0,.4)}
+  h1{margin:0 0 8px;font-size:1.5rem;letter-spacing:-.02em}
+  p{margin:0 0 14px;color:var(--soft);line-height:1.6}
+  ol{color:var(--soft);line-height:1.7;padding-left:20px}
+  ol b{color:var(--ink)}
+  button{width:100%;margin-top:20px;font:inherit;font-weight:700;font-size:1.05rem;background:var(--brand);color:#fff;border:0;
+    padding:16px;border-radius:12px;cursor:pointer;box-shadow:0 8px 22px rgba(37,99,235,.35)}
+  button:hover{background:var(--brand-dark)}
+  .note{margin-top:14px;font-size:.85rem;color:#94a3b8;text-align:center}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Activate lead capture</h1>
+    <p>One-time setup so your website leads land in your inbox. Click the button below, then:</p>
+    <ol>
+      <li>You'll see a FormSubmit "please activate" page — that's expected.</li>
+      <li>Check your <b>MCK Leads</b> folder (and Junk) for a FormSubmit email and <b>click its activation link</b>.</li>
+      <li>Done — form leads now flow in automatically.</li>
+    </ol>
+    <form action="https://formsubmit.co/leads@missedcallkiller.com" method="POST">
+      <input type="hidden" name="name" value="Lead capture activation">
+      <input type="hidden" name="message" value="Activating Missed Call Killer website lead capture.">
+      <input type="hidden" name="_subject" value="Activate Missed Call Killer lead capture">
+      <input type="hidden" name="_template" value="table">
+      <button type="submit">Activate lead capture →</button>
+    </form>
+    <p class="note">You only ever need to do this once.</p>
+  </div>
+</body>
+</html>
