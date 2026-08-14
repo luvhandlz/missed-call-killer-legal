@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Missed Call Killer — Never miss another lead again</title>
 <meta name="description" content="When a customer's call goes unanswered, Missed Call Killer texts them back in seconds, answers their questions, and books the job on your calendar — automatically. Built for local home-services businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#0f172a; --ink-soft:#475569; --ink-mute:#64748b;
@@ -12,9 +15,9 @@
     --brand:#2563eb; --brand-dark:#1d4ed8; --brand-ink:#1e3a8a;
     --go:#16a34a; --warn:#f97316;
     --navy:#0b1220;
-    --radius:16px; --shadow:0 12px 40px rgba(15,23,42,.10);
+    --radius:20px; --shadow:0 16px 44px rgba(15,23,42,.09);
     --maxw:1120px;
-    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -25,16 +28,17 @@
   img{max-width:100%}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:700;font-size:1.02rem;
-    padding:15px 26px;border-radius:12px;border:0;cursor:pointer;text-decoration:none;transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
-  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 22px rgba(37,99,235,.35)}
-  .btn-primary:hover{background:var(--brand-dark);transform:translateY(-1px)}
-  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
-  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+    padding:15px 26px;border-radius:14px;border:0;cursor:pointer;text-decoration:none;transition:transform .14s ease,box-shadow .14s ease,background .14s ease,border-color .14s ease}
+  .btn-primary{background:linear-gradient(180deg,#3b82f6,#2563eb);color:#fff;box-shadow:0 10px 24px rgba(37,99,235,.30)}
+  .btn-primary:hover{background:linear-gradient(180deg,#2f77ef,#1d4ed8);transform:translateY(-2px);box-shadow:0 14px 30px rgba(37,99,235,.38)}
+  .btn-ghost{background:#fff;color:var(--brand-dark);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--brand);background:#fff;transform:translateY(-2px)}
   .btn-lg{padding:18px 34px;font-size:1.1rem}
-  .eyebrow{display:inline-block;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+  .eyebrow{display:inline-block;font-weight:700;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--brand-dark);background:rgba(37,99,235,.09);padding:6px 13px;border-radius:30px}
 
   /* Header */
-  header.site{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+  header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  header.site .brand{color:var(--ink)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;color:#fff;text-decoration:none;font-size:1.08rem}
   .brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#60a5fa);display:grid;place-items:center;box-shadow:0 4px 14px rgba(37,99,235,.5)}
@@ -42,18 +46,18 @@
   .nav .btn{padding:11px 20px;font-size:.95rem}
 
   /* Hero */
-  .hero{background:radial-gradient(1100px 500px at 78% -10%,#16233d 0%,var(--navy) 55%);color:#fff;padding:76px 0 90px;overflow:hidden}
+  .hero{background:radial-gradient(680px 460px at 10% -8%,rgba(37,99,235,.10),transparent 60%),radial-gradient(620px 500px at 100% 8%,rgba(96,165,250,.15),transparent 60%),linear-gradient(180deg,#ffffff,#eef4fd);color:var(--ink);padding:90px 0 98px;overflow:hidden}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-  .hero h1{font-size:clamp(2.4rem,5vw,3.7rem);font-weight:850}
-  .hero h1 .hl{color:#7fb0ff}
-  .hero .sub{margin-top:22px;font-size:1.22rem;color:#c7d2e4;max-width:36ch}
+  .hero h1{font-size:clamp(2.7rem,5.6vw,4.15rem);font-weight:800;letter-spacing:-.035em;line-height:1.04}
+  .hero h1 .hl{background:linear-gradient(120deg,#2563eb,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{margin-top:22px;font-size:1.22rem;color:var(--ink-soft);max-width:36ch}
   .hero .cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
-  .hero .microtrust{margin-top:20px;color:#93a3bd;font-size:.95rem;display:flex;align-items:center;gap:8px}
+  .hero .microtrust{margin-top:20px;color:var(--ink-mute);font-size:.95rem;display:flex;align-items:center;gap:8px}
   .dot{width:9px;height:9px;border-radius:50%;background:var(--go);box-shadow:0 0 0 4px rgba(22,163,74,.2)}
 
   /* Phone mockup */
   .phone{justify-self:center;width:300px;max-width:100%;background:#0d1526;border:1px solid rgba(255,255,255,.12);
-    border-radius:34px;padding:16px 14px 20px;box-shadow:0 30px 70px rgba(0,0,0,.5);position:relative}
+    border-radius:34px;padding:16px 14px 20px;box-shadow:0 24px 55px rgba(15,23,42,.25);position:relative}
   .phone .notch{width:120px;height:24px;background:#000;border-radius:0 0 14px 14px;margin:-16px auto 12px}
   .phone .callbar{display:flex;align-items:center;gap:9px;padding:2px 6px 12px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:12px}
   .phone .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#60a5fa);display:grid;place-items:center;font-weight:800;color:#fff;font-size:.9rem}
@@ -71,26 +75,28 @@
 
   /* Trust strip */
   .strip{background:var(--bg-alt);border-bottom:1px solid var(--line)}
-  .strip .wrap{display:flex;align-items:center;justify-content:center;gap:14px 34px;flex-wrap:wrap;padding:22px 24px;color:var(--ink-mute);font-weight:600;font-size:.98rem}
-  .strip .tag{display:inline-flex;align-items:center;gap:8px}
+  .strip .wrap{display:flex;align-items:center;justify-content:center;gap:12px 16px;flex-wrap:wrap;padding:24px;color:var(--ink-soft);font-weight:600;font-size:.95rem}
+  .strip .tag{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:9px 16px;border-radius:30px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
   .strip svg{width:18px;height:18px;color:var(--brand)}
 
   section{padding:82px 0}
   .section-head{max-width:640px;margin:0 auto 52px;text-align:center}
-  .section-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800}
+  .section-head h2{font-size:clamp(1.9rem,3.8vw,2.7rem);font-weight:800;letter-spacing:-.03em}
   .section-head p{margin-top:16px;font-size:1.14rem;color:var(--ink-soft)}
 
   /* Problem */
-  .problem{background:var(--navy);color:#fff}
-  .problem .section-head p{color:#b9c4d8}
+  .problem{background:var(--bg-alt)}
+  .problem .section-head p{color:var(--ink-soft)}
   .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
-  .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:28px 24px;text-align:center}
-  .stat .big{font-size:2.5rem;font-weight:850;color:#7fb0ff;letter-spacing:-.03em}
-  .stat p{color:#c0cbdd;margin-top:8px;font-size:1rem}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;text-align:center;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+  .stat:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(15,23,42,.09);border-color:#d6e0f2}
+  .stat .big{font-size:2.5rem;font-weight:850;color:var(--brand);letter-spacing:-.03em}
+  .stat p{color:var(--ink-soft);margin-top:8px;font-size:1rem}
 
   /* Steps */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;position:relative;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;position:relative;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+  .step:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(15,23,42,.09);border-color:#d6e0f2}
   .step .num{width:44px;height:44px;border-radius:12px;background:var(--brand);color:#fff;font-weight:800;display:grid;place-items:center;font-size:1.15rem;margin-bottom:18px;box-shadow:0 8px 18px rgba(37,99,235,.3)}
   .step h3{font-size:1.28rem;margin-bottom:9px}
   .step p{color:var(--ink-soft)}
@@ -99,7 +105,8 @@
   /* Benefits */
   .benefits{background:var(--bg-alt)}
   .bgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .benefit{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+  .benefit{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+  .benefit:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(15,23,42,.08);border-color:#d6e0f2}
   .benefit .ic{flex:0 0 44px;width:44px;height:44px;border-radius:11px;background:rgba(37,99,235,.1);color:var(--brand);display:grid;place-items:center}
   .benefit .ic svg{width:22px;height:22px}
   .benefit h3{font-size:1.14rem;margin-bottom:5px}
@@ -116,14 +123,14 @@
   details p{color:var(--ink-soft);padding:0 0 20px}
 
   /* Contact */
-  .contact{background:linear-gradient(160deg,#0b1220,#16233d);color:#fff}
+  .contact{background:var(--bg-alt)}
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
   .contact h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:850}
-  .contact .lead{margin-top:16px;font-size:1.16rem;color:#c7d2e4}
+  .contact .lead{margin-top:16px;font-size:1.16rem;color:var(--ink-soft)}
   .checklist{margin-top:26px;display:flex;flex-direction:column;gap:13px;padding:0;list-style:none}
-  .checklist li{display:flex;gap:12px;align-items:flex-start;color:#dbe4f2}
+  .checklist li{display:flex;gap:12px;align-items:flex-start;color:var(--ink)}
   .checklist svg{flex:0 0 22px;width:22px;height:22px;color:var(--go);margin-top:1px}
-  form{background:#fff;color:var(--ink);border-radius:20px;padding:30px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+  form{background:#fff;color:var(--ink);border-radius:20px;padding:30px;box-shadow:var(--shadow);border:1px solid var(--line)}
   form h3{font-size:1.35rem;margin-bottom:6px}
   form .fnote{color:var(--ink-mute);font-size:.95rem;margin-bottom:20px}
   .field{margin-bottom:16px}
@@ -162,7 +169,7 @@
       <span>Missed Call Killer</span>
     </a>
     <div style="display:flex;align-items:center;gap:22px">
-      <a href="pricing.html" style="color:#c7d2e4;text-decoration:none;font-size:.95rem;font-weight:600">Pricing</a>
+      <a href="pricing.html" style="color:var(--ink-soft);text-decoration:none;font-size:.95rem;font-weight:600">Pricing</a>
       <a href="pricing.html" class="btn btn-primary">Get started</a>
     </div>
   </div>
@@ -174,7 +181,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow" style="color:#7fb0ff">For local home-services businesses</span>
+        <span class="eyebrow">For local home-services businesses</span>
         <h1 style="margin-top:14px">Never miss another <span class="hl">lead</span> again.</h1>
         <p class="sub">When a customer's call goes unanswered, we text them back in seconds, answer their questions, and book the job straight onto your calendar — automatically, day or night.</p>
         <div class="cta-row">
@@ -214,8 +221,8 @@
   <section class="problem">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow" style="color:#7fb0ff">The problem</span>
-        <h2 style="color:#fff;margin-top:10px">A missed call is a missed job.</h2>
+        <span class="eyebrow">The problem</span>
+        <h2 style="margin-top:10px">A missed call is a missed job.</h2>
         <p>You're on a roof, under a sink, or driving to the next job — so the phone rings out. Most callers won't leave a voicemail. They just dial the next name on the list.</p>
       </div>
       <div class="stat-row">
@@ -313,7 +320,7 @@
   <section class="contact" id="contact">
     <div class="wrap contact-grid">
       <div>
-        <span class="eyebrow" style="color:#7fb0ff">Get started</span>
+        <span class="eyebrow">Get started</span>
         <h2 style="margin-top:10px">Stop losing jobs to voicemail.</h2>
         <p class="lead">Tell us a little about your business and we'll get you set up. No pressure — we'll show you exactly how it works for your shop.</p>
         <ul class="checklist">
