@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missed Call Killer — Pricing</title>
+<meta name="description" content="Simple pricing for Missed Call Killer. One saved job usually covers the whole month. No long-term contract — we handle the entire setup.">
+<style>
+  :root{
+    --ink:#0f172a; --ink-soft:#475569; --ink-mute:#64748b;
+    --bg:#ffffff; --bg-alt:#f8fafc; --line:#e6ebf2;
+    --brand:#2563eb; --brand-dark:#1d4ed8; --brand-ink:#1e3a8a;
+    --go:#16a34a; --navy:#0b1220;
+    --radius:16px; --shadow:0 12px 40px rgba(15,23,42,.10);
+    --maxw:1120px;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.14;margin:0;letter-spacing:-.02em;text-wrap:balance}
+  p{margin:0}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:700;font-size:1.02rem;
+    padding:15px 26px;border-radius:12px;border:0;cursor:pointer;text-decoration:none;transition:transform .12s,box-shadow .12s,background .12s}
+  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 22px rgba(37,99,235,.35)}
+  .btn-primary:hover{background:var(--brand-dark);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .btn-outline{background:transparent;color:var(--brand-dark);border:1.5px solid var(--line)}
+  .btn-outline:hover{border-color:var(--brand)}
+  .eyebrow{display:inline-block;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(11,18,32,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;color:#fff;text-decoration:none;font-size:1.08rem}
+  .brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#60a5fa);display:grid;place-items:center;box-shadow:0 4px 14px rgba(37,99,235,.5)}
+  .brand .mark svg{width:17px;height:17px}
+  .nav .links{display:flex;align-items:center;gap:22px}
+  .nav .links a{color:#c7d2e4;text-decoration:none;font-size:.95rem;font-weight:600}
+  .nav .links a:hover{color:#fff}
+  .nav .btn{padding:11px 20px;font-size:.95rem}
+  @media (max-width:640px){.nav .links a.hideph{display:none}}
+
+  .hero{background:radial-gradient(1000px 460px at 80% -20%,#16233d,var(--navy));color:#fff;padding:64px 0 40px;text-align:center}
+  .hero h1{font-size:clamp(2.2rem,4.6vw,3.2rem);font-weight:850}
+  .hero p{margin:18px auto 0;font-size:1.18rem;color:#c7d2e4;max-width:44ch}
+  .hero .reassure{margin-top:22px;display:flex;gap:10px 22px;justify-content:center;flex-wrap:wrap;color:#93a3bd;font-size:.95rem}
+  .hero .reassure span{display:inline-flex;align-items:center;gap:7px}
+  .hero .reassure svg{width:16px;height:16px;color:var(--go)}
+
+  /* Pricing cards */
+  .pricing{margin-top:-30px;padding-bottom:20px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 26px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card.pop{border:2px solid var(--brand);box-shadow:0 20px 50px rgba(37,99,235,.18);position:relative}
+  .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--brand);color:#fff;font-size:.72rem;
+    font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:20px}
+  .card h3{font-size:1.3rem;font-weight:800}
+  .card .who{color:var(--ink-mute);font-size:.94rem;margin-top:4px;min-height:2.6em}
+  .price{margin-top:16px;display:flex;align-items:baseline;gap:6px}
+  .price .amt{font-size:2.6rem;font-weight:850;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .price .per{color:var(--ink-mute);font-weight:600}
+  .setup{margin-top:6px;font-size:.9rem;color:var(--ink-soft)}
+  .setup b{color:var(--ink)}
+  .card .btn{margin-top:20px;justify-content:center;width:100%}
+  .feat{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:11px}
+  .feat li{display:flex;gap:11px;align-items:flex-start;font-size:.96rem;color:var(--ink-soft)}
+  .feat li svg{flex:0 0 19px;width:19px;height:19px;color:var(--go);margin-top:3px}
+  .feat li b{color:var(--ink)}
+
+  section{padding:64px 0}
+  .section-head{max-width:620px;margin:0 auto 40px;text-align:center}
+  .section-head h2{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:820}
+  .section-head p{margin-top:14px;font-size:1.1rem;color:var(--ink-soft)}
+
+  .included{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .inc{display:flex;gap:13px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+  .inc svg{flex:0 0 22px;width:22px;height:22px;color:var(--brand);margin-top:1px}
+  .inc b{display:block;color:var(--ink);font-size:1rem}
+  .inc span{color:var(--ink-soft);font-size:.92rem}
+
+  .value{max-width:760px;margin:0 auto;text-align:center;background:linear-gradient(160deg,#0b1220,#16233d);color:#fff;border-radius:20px;padding:38px 32px}
+  .value h2{font-size:clamp(1.6rem,3.2vw,2.1rem);font-weight:820}
+  .value p{margin-top:14px;color:#c7d2e4;font-size:1.12rem}
+  .value .hl{color:#7fb0ff;font-weight:800}
+
+  .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:4px 22px}
+  details[open]{box-shadow:var(--shadow)}
+  summary{cursor:pointer;font-weight:700;font-size:1.06rem;padding:18px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:1.5rem;color:var(--brand);font-weight:400;transition:transform .2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{color:var(--ink-soft);padding:0 0 20px}
+
+  .cta{text-align:center}
+  .cta h2{font-size:clamp(1.8rem,3.4vw,2.4rem);font-weight:850}
+  .cta p{margin:14px auto 26px;color:var(--ink-soft);font-size:1.12rem;max-width:40ch}
+
+  footer.site{background:var(--navy);color:#94a3b8;padding:44px 0;border-top:1px solid rgba(255,255,255,.06)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot a{color:#cbd5e1;text-decoration:none;margin-left:22px;font-size:.95rem}
+  .foot a:hover{color:#fff}
+  .foot .copy{color:#64748b;font-size:.9rem;width:100%;margin-top:8px}
+
+  @media (max-width:900px){
+    .cards,.inc-grid{grid-template-columns:1fr}
+    .pricing{margin-top:-20px}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1z" fill="#fff"/></svg></span>
+      Missed Call Killer
+    </a>
+    <div class="links">
+      <a href="index.html#how" class="hideph">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="get-started.html?plan=growth" class="btn btn-primary">Get started</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow" style="color:#7fb0ff">Pricing</span>
+      <h1 style="margin-top:12px">Pricing that pays for itself.</h1>
+      <p>One saved job usually covers the whole month. Simple plans, no long-term contract, and we handle the entire setup.</p>
+      <div class="reassure">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No long-term contract</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> We do the setup for you</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Keep your number</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="wrap">
+      <div class="cards">
+
+        <div class="card">
+          <h3>Starter</h3>
+          <p class="who">Solo operators &amp; smaller shops just getting started.</p>
+          <div class="price"><span class="amt">$300</span><span class="per">/month</span></div>
+          <p class="setup">+ <b>$500</b> one-time setup</p>
+          <a href="get-started.html?plan=starter" class="btn btn-outline">Get started</a>
+          <ul class="feat">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Automatic text-back in under 60 seconds</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> AI conversation that qualifies the lead</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Books straight to your calendar</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> One business phone line</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Email support</li>
+          </ul>
+        </div>
+
+        <div class="card pop">
+          <span class="badge">Most popular</span>
+          <h3>Growth</h3>
+          <p class="who">Busy shops that miss real money in leads every week.</p>
+          <div class="price"><span class="amt">$450</span><span class="per">/month</span></div>
+          <p class="setup">+ <b>$500</b> one-time setup</p>
+          <a href="get-started.html?plan=growth" class="btn btn-primary">Get started</a>
+          <ul class="feat">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Everything in Starter, plus:</b></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Higher lead volume</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority support</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Custom message tone for your brand</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Monthly check-in on results</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Pro</h3>
+          <p class="who">High-volume operations &amp; multi-crew or multi-location shops.</p>
+          <div class="price"><span class="amt">$600</span><span class="per">/month</span></div>
+          <p class="setup">+ <b>$500</b> one-time setup</p>
+          <a href="get-started.html?plan=pro" class="btn btn-outline">Get started</a>
+          <ul class="feat">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Everything in Growth, plus:</b></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Highest lead volume</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Multiple numbers / locations</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fastest priority support</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Hands-on setup for each location</li>
+          </ul>
+        </div>
+
+      </div>
+      <p style="text-align:center;color:var(--ink-mute);font-size:.92rem;margin-top:22px">Not sure which fits? We'll size it to your call volume — reach out and we'll point you to the right plan.</p>
+    </div>
+  </section>
+
+  <section class="included">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Every plan includes</span>
+        <h2 style="margin-top:10px">The full system, on every plan.</h2>
+      </div>
+      <div class="inc-grid">
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg><div><b>60-second text-back</b><span>Every missed call gets an instant, friendly reply.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><div><b>Auto-booking</b><span>Real times from your real calendar, booked for you.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Works 24/7</b><span>Nights, weekends, and mid-job — it never stops.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Keep your number</b><span>Nothing changes for you. No new app to learn.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div><b>Sounds human</b><span>Friendly texts that represent your business well.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Done-for-you setup</b><span>We build it, wire it to your calendar, and test it.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="value">
+        <h2>Do the math.</h2>
+        <p>If a single job is worth a few hundred dollars, and this catches even <span class="hl">one</span> you'd have lost this month — it's already paid for itself. Everything after that is profit you weren't capturing before.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Questions</span>
+        <h2 style="margin-top:10px">Pricing, answered.</h2>
+      </div>
+      <div class="faq-list">
+        <details open><summary>What does the $500 setup cover?</summary><p>Everything to get you live: setting up your dedicated business line, wiring it to your Google Calendar, tuning the conversation for your trade, and testing it end-to-end. You don't lift a finger — we hand it to you working.</p></details>
+        <details><summary>Is there a long-term contract?</summary><p>No. It's month-to-month. If it's not catching you jobs, you can cancel — we're confident it will.</p></details>
+        <details><summary>How fast can I be up and running?</summary><p>Usually within a few days of getting started. Setup on our end is quick once we have your number and calendar access.</p></details>
+        <details><summary>What if I get more calls than my plan covers?</summary><p>Good problem to have. We'll just move you up to the plan that fits your volume — no penalty, no drama.</p></details>
+        <details><summary>Which plan should I choose?</summary><p>Most shops land on Growth. If you're a solo operator, Starter is plenty; if you're running multiple crews or locations, Pro. Not sure? Reach out and we'll size it to your actual call volume.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" style="padding-top:0">
+    <div class="wrap">
+      <h2>Stop losing jobs to voicemail.</h2>
+      <p>Tell us about your shop and we'll get you set up on the right plan.</p>
+      <a href="get-started.html?plan=growth" class="btn btn-primary btn-lg" style="padding:18px 34px;font-size:1.1rem">Get started</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <a href="index.html" class="brand">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1z" fill="#fff"/></svg></span>
+      Missed Call Killer
+    </a>
+    <nav>
+      <a href="index.html#how">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="sms-terms.html">SMS Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+    <p class="copy">© 2026 Missed Call Killer. Automated text-back for local home-services businesses.</p>
+  </div>
+</footer>
+
+</body>
+</html>
