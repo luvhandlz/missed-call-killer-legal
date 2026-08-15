@@ -3,45 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Missed Call Killer — You're In!</title>
 <meta name="robots" content="noindex">
 <style>
   :root{
-    --ink:#0f172a; --ink-soft:#475569; --line:#e6ebf2;
-    --brand:#2563eb; --brand-dark:#1d4ed8; --go:#16a34a; --navy:#0b1220;
-    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --ink:#181818; --ink-soft:#333333; --line:#e3dccf;
+    --brand:#181818; --brand-dark:#333333; --go:#181818; --navy:#181818;
+    --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--navy);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
   h1,h2{margin:0;line-height:1.15;letter-spacing:-.02em}
   p{margin:0}
   a{color:inherit}
   .top{padding:22px 24px}
-  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;color:#fff;text-decoration:none;font-size:1.05rem}
-  .brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#60a5fa);display:grid;place-items:center}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);text-decoration:none;font-size:1.05rem}
+  .brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#333333);display:grid;place-items:center}
   .brand .mark svg{width:17px;height:17px}
+  .brand .logo{height:34px;width:auto;display:block}
   main{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 24px 70px}
-  .card{background:#fff;border-radius:22px;max-width:560px;width:100%;padding:44px 38px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.4)}
-  .check{width:72px;height:72px;border-radius:50%;background:rgba(22,163,74,.12);display:grid;place-items:center;margin:0 auto 22px}
+  .card{background:#fff;border-radius:22px;max-width:560px;width:100%;padding:44px 38px;text-align:center;box-shadow:0 16px 44px rgba(24,24,24,.10);border:1px solid var(--line)}
+  .check{width:72px;height:72px;border-radius:50%;background:rgba(220,207,194,.55);display:grid;place-items:center;margin:0 auto 22px}
   .check svg{width:38px;height:38px;color:var(--go)}
   h1{font-size:1.9rem;font-weight:850}
   .lead{color:var(--ink-soft);margin-top:14px;font-size:1.1rem}
-  .steps{text-align:left;margin:28px 0 6px;padding:22px;background:#f8fafc;border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;gap:16px}
+  .steps{text-align:left;margin:28px 0 6px;padding:22px;background:#ece7db;border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;gap:16px}
   .steps h2{font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);margin-bottom:2px}
   .step{display:flex;gap:13px;align-items:flex-start}
-  .step .n{flex:0 0 28px;width:28px;height:28px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.9rem}
+  .step .n{flex:0 0 28px;width:28px;height:28px;border-radius:8px;background:var(--brand);color:#f5f2ea;font-weight:800;display:grid;place-items:center;font-size:.9rem}
   .step p{color:var(--ink-soft)}
   .step p b{color:var(--ink)}
   .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:700;font-size:1.02rem;padding:15px 28px;border-radius:12px;
-    text-decoration:none;background:var(--brand);color:#fff;margin-top:24px;box-shadow:0 8px 22px rgba(37,99,235,.35)}
+    text-decoration:none;background:var(--brand);color:#f5f2ea;margin-top:24px;box-shadow:0 8px 22px rgba(24,24,24,.35)}
   .btn:hover{background:var(--brand-dark)}
-  .note{margin-top:16px;font-size:.9rem;color:#94a3b8}
+  .note{margin-top:16px;font-size:.9rem;color:#a4a09a}
 </style>
 </head>
 <body>
   <div class="top">
     <a href="index.html" class="brand">
-      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1z" fill="#fff"/></svg></span>
+      <img class="logo" src="mck-logo.png" alt="Missed Call Killer">
       Missed Call Killer
     </a>
   </div>

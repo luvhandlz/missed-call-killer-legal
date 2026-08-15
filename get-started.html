@@ -3,15 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Missed Call Killer — Get Started</title>
 <meta name="description" content="Get set up with Missed Call Killer. Tell us about your shop and continue to secure checkout.">
 <style>
   :root{
-    --ink:#0f172a; --ink-soft:#475569; --ink-mute:#64748b;
-    --bg:#ffffff; --bg-alt:#f8fafc; --line:#e6ebf2;
-    --brand:#2563eb; --brand-dark:#1d4ed8; --go:#16a34a; --navy:#0b1220;
-    --shadow:0 12px 40px rgba(15,23,42,.10);
-    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --ink:#181818; --ink-soft:#333333; --ink-mute:#9a948a;
+    --bg:#f5f2ea; --bg-alt:#ece7db; --line:#e3dccf;
+    --brand:#181818; --brand-dark:#333333; --go:#181818; --navy:#181818;
+    --shadow:0 16px 44px rgba(24,24,24,.10);
+    --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6}
@@ -21,35 +25,37 @@
   .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-weight:700;font-size:1.05rem;
     padding:16px 26px;border-radius:12px;border:0;cursor:pointer;text-decoration:none;transition:transform .12s,background .12s,box-shadow .12s}
-  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 8px 22px rgba(37,99,235,.35)}
+  .btn-primary{background:var(--brand);color:#f5f2ea;box-shadow:0 8px 22px rgba(24,24,24,.35)}
   .btn-primary:hover{background:var(--brand-dark);transform:translateY(-1px)}
-  .btn-primary:disabled{background:#93a8d6;cursor:default;transform:none;box-shadow:none}
+  .btn-primary:disabled{background:#c9c3b8;cursor:default;transform:none;box-shadow:none}
 
-  header.site{background:var(--navy);border-bottom:1px solid rgba(255,255,255,.06)}
+  header.site{background:rgba(245,242,234,.92);border-bottom:1px solid var(--line)}
+  header.site .brand{color:var(--ink)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1000px;margin:0 auto;padding:0 24px}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:#fff;text-decoration:none;font-size:1.08rem}
-  .brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#60a5fa);display:grid;place-items:center}
+  .brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#333333);display:grid;place-items:center}
   .brand .mark svg{width:17px;height:17px}
-  .nav .back{color:#c7d2e4;text-decoration:none;font-size:.95rem;font-weight:600}
-  .nav .back:hover{color:#fff}
+  .brand .logo{height:34px;width:auto;display:block}
+  .nav .back{color:#333333;text-decoration:none;font-size:.95rem;font-weight:600}
+  .nav .back:hover{color:var(--ink)}
 
   main{padding:44px 0 70px}
   .grid{display:grid;grid-template-columns:1fr 1.15fr;gap:36px;align-items:start}
 
-  .summary{background:linear-gradient(160deg,#0b1220,#16233d);color:#fff;border-radius:18px;padding:28px 26px;position:sticky;top:24px}
-  .summary .eyebrow{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7fb0ff}
+  .summary{background:var(--bg-alt);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:28px 26px;position:sticky;top:24px}
+  .summary .eyebrow{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#333333}
   .summary h2{font-size:1.5rem;font-weight:850;margin-top:8px}
   .summary .price{margin-top:16px;display:flex;align-items:baseline;gap:6px}
   .summary .amt{font-size:2.6rem;font-weight:850;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-  .summary .per{color:#c3d0e6;font-weight:600}
-  .lines{margin-top:18px;border-top:1px solid rgba(255,255,255,.12);padding-top:16px;display:flex;flex-direction:column;gap:10px}
-  .line{display:flex;justify-content:space-between;color:#dbe4f2;font-size:.98rem}
-  .line b{color:#fff}
+  .summary .per{color:#333333;font-weight:600}
+  .lines{margin-top:18px;border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px}
+  .line{display:flex;justify-content:space-between;color:#333333;font-size:.98rem}
+  .line b{color:var(--ink)}
   .incl{margin-top:20px;list-style:none;padding:0;display:flex;flex-direction:column;gap:9px}
-  .incl li{display:flex;gap:10px;align-items:flex-start;color:#c7d2e4;font-size:.92rem}
+  .incl li{display:flex;gap:10px;align-items:flex-start;color:#333333;font-size:.92rem}
   .incl svg{flex:0 0 17px;width:17px;height:17px;color:var(--go);margin-top:3px}
   .switch{margin-top:18px;font-size:.9rem}
-  .switch a{color:#7fb0ff;text-decoration:none;font-weight:600}
+  .switch a{color:#333333;text-decoration:none;font-weight:600}
 
   .formcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:var(--shadow)}
   .formcard h1{font-size:1.5rem;font-weight:820}
@@ -57,7 +63,7 @@
   .field{margin-top:16px}
   label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
   input,select{width:100%;font:inherit;padding:14px 15px;border:1.5px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);transition:border-color .12s}
-  input:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(37,99,235,.14)}
+  input:focus,select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(24,24,24,.14)}
   .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .cta-btn{width:100%;margin-top:22px}
   .secure{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--ink-mute);font-size:.85rem}
@@ -74,7 +80,7 @@
 <header class="site">
   <div class="nav">
     <a href="index.html" class="brand">
-      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1z" fill="#fff"/></svg></span>
+      <img class="logo" src="mck-logo.png" alt="Missed Call Killer">
       Missed Call Killer
     </a>
     <a href="pricing.html" class="back">← Back to pricing</a>
