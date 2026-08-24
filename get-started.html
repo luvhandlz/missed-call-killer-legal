@@ -96,9 +96,9 @@
       <div class="price"><span class="amt" id="planPrice">$450</span><span class="per">/month</span></div>
       <div class="lines">
         <div class="line"><span>Monthly</span><b id="linePrice">$450 / mo</b></div>
-        <div class="line"><span>One-time setup</span><b>$500</b></div>
       </div>
       <ul class="incl">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No setup fee</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> We handle the entire setup</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No long-term contract</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Keep your number</li>
@@ -165,18 +165,18 @@
   //     even if they don't finish checkout. Uses formsubmit.co (no
   //     signup) to your leads@ inbox — activate it once (see guide).
   // ============================================================
-  // LIVE Stripe payment links (real charges). Swapped in 2026-08-19 after Stripe go-live.
+  // LIVE Stripe payment links (real charges). Swapped in 2026-08-24 — founding-customer pricing, no setup fee.
   var STRIPE_LINKS = {
-    starter: "https://buy.stripe.com/6oUdRb0vybNaget19M7ss00",
-    growth:  "https://buy.stripe.com/7sY5kFceg18w4vL2dQ7ss02",
-    pro:     "https://buy.stripe.com/3cI28t5PS2cA2nD7ya7ss01"
+    starter: "https://buy.stripe.com/28E5kF0vy8AY1jzg4G7ss03",
+    growth:  "https://buy.stripe.com/14A8wRfqs6sQ1jz05I7ss04",
+    pro:     "https://buy.stripe.com/bJefZj0vyaJ68M13hU7ss05"
   };
   var LEAD_ENDPOINT = "https://formsubmit.co/ajax/leads@missedcallkiller.com";
 
   var PLANS = {
-    starter: { name: "Starter", price: "$300" },
-    growth:  { name: "Growth",  price: "$450" },
-    pro:     { name: "Pro",     price: "$600" }
+    starter: { name: "Starter", price: "$99" },
+    growth:  { name: "Growth",  price: "$179" },
+    pro:     { name: "Pro",     price: "$279" }
   };
 
   function getPlan(){
