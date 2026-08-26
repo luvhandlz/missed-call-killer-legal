@@ -143,6 +143,8 @@
   form .btn-primary{width:100%;justify-content:center;margin-top:6px}
   .form-fine{margin-top:14px;font-size:.82rem;color:var(--ink-mute);text-align:center}
   .form-fine a{color:var(--brand)}
+  .form-thanks{display:none;margin-top:16px;background:#e2ece7;border:1px solid #bcd6c9;color:#17453a;border-radius:11px;padding:13px 15px;font-size:.9rem;font-weight:600}
+  .form-err{display:none;margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:11px;padding:13px 15px;font-size:.9rem}
 
   /* Footer */
   footer.site{background:var(--navy);color:#a4a09a;padding:44px 0;border-top:1px solid rgba(255,255,255,.06)}
@@ -349,7 +351,7 @@
         </ul>
       </div>
 
-      <form id="leadForm" action="mailto:leads@missedcallkiller.com" method="POST" enctype="text/plain">
+      <form id="leadForm" action="https://formsubmit.co/leads@missedcallkiller.com" method="POST">
         <h3>Get a free setup</h3>
         <p class="fnote">We'll reach out within one business day.</p>
         <div class="field">
@@ -379,8 +381,10 @@
           <label for="message">Anything else? (optional)</label>
           <textarea id="message" name="message" placeholder="How many calls do you miss in a week?"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Send &amp; get set up →</button>
+        <button type="submit" class="btn btn-primary" id="leadSubmitBtn">Send &amp; get set up →</button>
         <p class="form-fine">By submitting, you agree to our <a href="terms.html">Terms</a> &amp; <a href="privacy.html">Privacy Policy</a>.</p>
+        <div class="form-thanks" id="leadThanks">Thanks! We've got your info and will reach out within one business day.</div>
+        <div class="form-err" id="leadErr">Something went wrong sending that. Please email us directly at <a href="mailto:leads@missedcallkiller.com">leads@missedcallkiller.com</a>.</div>
       </form>
     </div>
   </section>
@@ -438,15 +442,40 @@
   (function(){
     var f = document.getElementById('leadForm');
     if(!f) return;
+    var btn = document.getElementById('leadSubmitBtn');
+    var thanks = document.getElementById('leadThanks');
+    var err = document.getElementById('leadErr');
+
     f.addEventListener('submit', function(e){
       e.preventDefault();
       var g = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; };
       var name = g('name'), business = g('business'), phone = g('phone'), trade = g('trade'), message = g('message');
-      var subject = 'New lead: ' + (business || name || 'Missed Call Killer website');
-      var body = 'Name: ' + name + '\nBusiness: ' + business + '\nPhone: ' + phone +
-                 '\nType of work: ' + trade + '\nMessage: ' + message;
-      window.location.href = 'mailto:leads@missedcallkiller.com?subject=' +
-        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+      if(!name || !business || !phone){
+        f.reportValidity();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      err.style.display = 'none';
+
+      fetch('https://formsubmit.co/ajax/leads@missedcallkiller.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: name, business: business, phone: phone, trade: trade, message: message,
+          _subject: 'New lead: ' + (business || name)
+        })
+      }).then(function(res){
+        if(!res.ok) throw new Error('bad response');
+        f.querySelectorAll('input, select, textarea, button').forEach(function(el){ el.disabled = true; });
+        thanks.style.display = 'block';
+      }).catch(function(){
+        btn.disabled = false;
+        btn.textContent = 'Send & get set up →';
+        err.style.display = 'block';
+      });
     });
   })();
 </script>
