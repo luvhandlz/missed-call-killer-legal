@@ -467,15 +467,18 @@
           name: name, business: business, phone: phone, trade: trade, message: message,
           _subject: 'New lead: ' + (business || name)
         })
-      }).then(function(res){
-        if(!res.ok) throw new Error('bad response');
-        f.querySelectorAll('input, select, textarea, button').forEach(function(el){ el.disabled = true; });
-        thanks.style.display = 'block';
-      }).catch(function(){
-        btn.disabled = false;
-        btn.textContent = 'Send & get set up →';
-        err.style.display = 'block';
-      });
+      }).then(function(res){ return res.json().then(function(data){ return {ok: res.ok, data: data}; }); })
+        .then(function(result){
+          // formsubmit.co returns HTTP 200 even when it silently fails (e.g. an
+          // unactivated form) — the real signal is the "success" field in the body.
+          if(!result.ok || !result.data || result.data.success !== true) throw new Error('form not accepted');
+          f.querySelectorAll('input, select, textarea, button').forEach(function(el){ el.disabled = true; });
+          thanks.style.display = 'block';
+        }).catch(function(){
+          btn.disabled = false;
+          btn.textContent = 'Send & get set up →';
+          err.style.display = 'block';
+        });
     });
   })();
 </script>

@@ -226,13 +226,8 @@
     btn.disabled = true;
     btn.textContent = 'One sec…';
 
-    // Capture the lead first (best-effort), then either go to checkout (fixed-price
-    // plans) or just confirm we got it (Industrial has no fixed price to charge).
-    function proceed(){
-      if(plan.custom){
-        form.querySelectorAll('input, select, button').forEach(function(el){ el.disabled = true; });
-        document.getElementById('thanksMsg').style.display = 'block';
-      } else if(live){
+    function goToCheckout(){
+      if(live){
         var sep = link.indexOf('?') === -1 ? '?' : '&';
         location.href = link + sep + 'prefilled_email=' + encodeURIComponent(data.email);
       } else {
@@ -242,14 +237,48 @@
       }
     }
 
+    if (plan.custom) {
+      // Industrial has no Stripe checkout to fall back on — this email IS the whole
+      // conversion, so unlike the fixed-price plans below, a failure has to actually
+      // show as a failure instead of a false "thanks" with nothing sent.
+      var settled = false;
+      var showFailure = function(){
+        if (settled) return;
+        settled = true;
+        document.getElementById('notLive').innerHTML =
+          'Something went wrong sending that. Please email us directly at ' +
+          '<a href="mailto:leads@missedcallkiller.com">leads@missedcallkiller.com</a>.';
+        document.getElementById('notLive').style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Request a quote →';
+      };
+      setTimeout(showFailure, 8000);
+
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function(res){ return res.json().then(function(d){ return {ok: res.ok, data: d}; }); })
+        .then(function(result){
+          if (settled) return;
+          if(!result.ok || !result.data || result.data.success !== true) throw new Error('not accepted');
+          settled = true;
+          form.querySelectorAll('input, select, button').forEach(function(el){ el.disabled = true; });
+          document.getElementById('thanksMsg').style.display = 'block';
+        }).catch(showFailure);
+      return;
+    }
+
+    // Fixed-price plans: capture the lead best-effort, but Stripe checkout is the
+    // real backstop, so proceed either way rather than blocking on the email.
     fetch(LEAD_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
-    }).then(proceed).catch(proceed);
+    }).then(goToCheckout).catch(goToCheckout);
 
     // Safety: never leave them stuck if the network hangs.
-    setTimeout(proceed, 3500);
+    setTimeout(goToCheckout, 3500);
   });
 </script>
 </body>
