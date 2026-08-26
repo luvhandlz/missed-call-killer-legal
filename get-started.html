@@ -176,7 +176,7 @@
   var LEAD_ENDPOINT = "https://formsubmit.co/ajax/leads@missedcallkiller.com";
 
   var PLANS = {
-    starter:    { name: "Starter",    price: "$99" },
+    starter:    { name: "Starter",    price: "$99", trial: true },
     growth:     { name: "Growth",     price: "$179" },
     pro:        { name: "Pro",        price: "$279" },
     industrial: { name: "Industrial", price: "Custom", custom: true }
@@ -201,6 +201,13 @@
     document.querySelector('.secure').style.display = 'none';
   } else {
     document.getElementById('linePrice').textContent = plan.price + ' / mo';
+  }
+
+  if (plan.trial) {
+    var trialLi = document.createElement('li');
+    trialLi.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>First 7 days free</b>';
+    document.querySelector('.summary .incl').prepend(trialLi);
+    document.getElementById('linePrice').textContent = '7 days free, then ' + plan.price + ' / mo';
   }
 
   var form = document.getElementById('startForm');
