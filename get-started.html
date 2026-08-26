@@ -71,6 +71,7 @@
   .fine{margin-top:12px;font-size:.8rem;color:var(--ink-mute);text-align:center}
   .fine a{color:var(--brand)}
   .notlive{display:none;margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:11px;padding:13px 15px;font-size:.9rem}
+  .thanks{display:none;margin-top:16px;background:#e2ece7;border:1px solid #bcd6c9;color:#17453a;border-radius:11px;padding:13px 15px;font-size:.9rem;font-weight:600}
 
   @media (max-width:820px){.grid{grid-template-columns:1fr}.summary{position:static}.row{grid-template-columns:1fr}}
 </style>
@@ -149,6 +150,7 @@
         </div>
         <p class="fine">By continuing you agree to our <a href="terms.html">Terms</a> &amp; <a href="privacy.html">Privacy Policy</a>.</p>
         <div class="notlive" id="notLive">Online checkout is being finalized. Please <a href="index.html#contact">contact us</a> and we'll get you set up right away.</div>
+        <div class="thanks" id="thanksMsg">Thanks! We've got your info — expect a custom quote from us within a day.</div>
       </form>
     </section>
 
@@ -174,9 +176,10 @@
   var LEAD_ENDPOINT = "https://formsubmit.co/ajax/leads@missedcallkiller.com";
 
   var PLANS = {
-    starter: { name: "Starter", price: "$99" },
-    growth:  { name: "Growth",  price: "$179" },
-    pro:     { name: "Pro",     price: "$279" }
+    starter:    { name: "Starter",    price: "$99" },
+    growth:     { name: "Growth",     price: "$179" },
+    pro:        { name: "Pro",        price: "$279" },
+    industrial: { name: "Industrial", price: "Custom", custom: true }
   };
 
   function getPlan(){
@@ -188,8 +191,17 @@
 
   document.getElementById('planName').textContent = plan.name;
   document.getElementById('planPrice').textContent = plan.price;
-  document.getElementById('linePrice').textContent = plan.price + ' / mo';
   document.title = 'Missed Call Killer — Get Started (' + plan.name + ')';
+
+  if (plan.custom) {
+    document.querySelector('.summary .per').textContent = '';
+    document.getElementById('linePrice').textContent = 'Sized to your call volume';
+    document.querySelector('.formcard .sub').textContent = "Tell us about your operation and we'll follow up with a custom quote.";
+    document.getElementById('submitBtn').textContent = 'Request a quote →';
+    document.querySelector('.secure').style.display = 'none';
+  } else {
+    document.getElementById('linePrice').textContent = plan.price + ' / mo';
+  }
 
   var form = document.getElementById('startForm');
   var btn = document.getElementById('submitBtn');
@@ -214,9 +226,13 @@
     btn.disabled = true;
     btn.textContent = 'One sec…';
 
-    // Capture the lead first (best-effort), then go to checkout.
+    // Capture the lead first (best-effort), then either go to checkout (fixed-price
+    // plans) or just confirm we got it (Industrial has no fixed price to charge).
     function proceed(){
-      if(live){
+      if(plan.custom){
+        form.querySelectorAll('input, select, button').forEach(function(el){ el.disabled = true; });
+        document.getElementById('thanksMsg').style.display = 'block';
+      } else if(live){
         var sep = link.indexOf('?') === -1 ? '?' : '&';
         location.href = link + sep + 'prefilled_email=' + encodeURIComponent(data.email);
       } else {
