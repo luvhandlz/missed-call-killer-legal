@@ -75,20 +75,6 @@
   @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.bubble{animation:none}}
 
-  /* Self-serve demo */
-  .try-demo{justify-self:center;width:300px;max-width:100%;margin-top:16px;background:#fcfaf5;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
-  .try-demo p.lbl{font-weight:700;font-size:.92rem;margin-bottom:10px}
-  .try-demo-row{display:flex;gap:8px}
-  .try-demo input{flex:1;font:inherit;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;background:#fcfaf5;color:var(--ink)}
-  .try-demo input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(24,24,24,.1)}
-  .try-demo button{flex:none;background:#1e5a48;color:#f5f2ea;border:0;border-radius:10px;padding:11px 16px;font-weight:700;font-size:.9rem;cursor:pointer;transition:filter .12s ease}
-  .try-demo button:hover{filter:brightness(1.08)}
-  .try-demo button:disabled{opacity:.6;cursor:default}
-  .try-demo .status{margin-top:10px;font-size:.85rem;min-height:1.2em}
-  .try-demo .status.ok{color:#17453a;font-weight:600}
-  .try-demo .status.err{color:#9a3412}
-  .try-demo .fine{margin-top:8px;font-size:.76rem;color:var(--ink-mute)}
-
   /* Trust strip */
   .strip{background:var(--bg-alt);border-bottom:1px solid var(--line)}
   .strip .wrap{display:flex;align-items:center;justify-content:center;gap:12px 16px;flex-wrap:wrap;padding:24px;color:var(--ink-soft);font-weight:600;font-size:.95rem}
@@ -240,17 +226,6 @@
           <div class="bubble out b4">Today at 4:30 please</div>
           <div class="bubble booked b5">✓ You're booked for today at 4:30. See you then!</div>
         </div>
-      </div>
-
-      <!-- Self-serve demo -->
-      <div class="try-demo">
-        <p class="lbl">Or try it yourself right now</p>
-        <div class="try-demo-row">
-          <input type="tel" id="tryDemoPhone" placeholder="(801) 555-1234" autocomplete="tel">
-          <button type="button" id="tryDemoBtn">Text me</button>
-        </div>
-        <p class="status" id="tryDemoStatus"></p>
-        <p class="fine">We'll send this exact number one real text, right now. Msg &amp; data rates may apply.</p>
       </div>
     </div>
   </section>
@@ -505,46 +480,6 @@
           err.style.display = 'block';
         });
     });
-  })();
-</script>
-
-<script>
-  (function(){
-    var btn = document.getElementById('tryDemoBtn');
-    if(!btn) return;
-    var input = document.getElementById('tryDemoPhone');
-    var status = document.getElementById('tryDemoStatus');
-
-    btn.addEventListener('click', function(){
-      var phone = input.value.trim();
-      status.textContent = '';
-      status.className = 'status';
-      if(!phone){
-        status.textContent = 'Enter your phone number first.';
-        status.className = 'status err';
-        return;
-      }
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      fetch('https://missed-call-killer-production.up.railway.app/api/public-demo', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone: phone })
-      }).then(function(res){ return res.json().then(function(data){ return {ok: res.ok, data: data}; }); })
-        .then(function(result){
-          if(!result.ok) throw new Error(result.data && result.data.message);
-          status.textContent = 'Sent! Check your texts.';
-          status.className = 'status ok';
-        }).catch(function(err){
-          status.textContent = (err && err.message) || 'Something went wrong — try again in a bit.';
-          status.className = 'status err';
-        }).finally(function(){
-          btn.disabled = false;
-          btn.textContent = 'Text me';
-        });
-    });
-
-    input.addEventListener('keydown', function(e){ if(e.key === 'Enter') btn.click(); });
   })();
 </script>
 
