@@ -75,6 +75,14 @@
   .thanks{display:none;margin-top:16px;background:#e2ece7;border:1px solid #bcd6c9;color:#17453a;border-radius:11px;padding:13px 15px;font-size:.9rem;font-weight:600}
 
   @media (max-width:820px){.grid{grid-template-columns:1fr}.summary{position:static}.row{grid-template-columns:1fr}}
+
+  .field .hint{font-weight:400;color:var(--ink-mute);font-size:.85rem}
+  .days-row{display:flex;flex-wrap:wrap;gap:14px;padding:6px 0 2px}
+  .days-row label{display:flex;align-items:center;gap:6px;font-weight:500;font-size:.92rem;margin-bottom:0}
+  .days-row input[type="checkbox"]{width:auto;padding:0;accent-color:var(--go)}
+  input[type="time"]{cursor:pointer}
+  .section-divider{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+  .section-divider .lbl{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
 </style>
 </head>
 <body>
@@ -144,6 +152,42 @@
           </select>
         </div>
 
+        <div class="section-divider">
+          <span class="lbl">Getting you set up</span>
+        </div>
+
+        <div class="field">
+          <label for="services">What services do you offer?</label>
+          <input id="services" name="services" type="text" required placeholder="e.g. drain cleaning, water heater repair, sewer line repair">
+        </div>
+        <div class="field">
+          <label for="calendar">Google Calendar email <span class="hint">(optional — lets us auto-book appointments for you; leave blank to skip that for now)</span></label>
+          <input id="calendar" name="calendar" type="email" placeholder="you@gmail.com">
+        </div>
+        <div class="field">
+          <label>What hours are you generally available for jobs?</label>
+          <div class="row">
+            <input id="hoursStart" name="hoursStart" type="time" value="08:00" required aria-label="Start time">
+            <input id="hoursEnd" name="hoursEnd" type="time" value="18:00" required aria-label="End time">
+          </div>
+        </div>
+        <div class="field">
+          <label>Which days?</label>
+          <div class="days-row" id="daysRow">
+            <label><input type="checkbox" value="1" checked> Mon</label>
+            <label><input type="checkbox" value="2" checked> Tue</label>
+            <label><input type="checkbox" value="3" checked> Wed</label>
+            <label><input type="checkbox" value="4" checked> Thu</label>
+            <label><input type="checkbox" value="5" checked> Fri</label>
+            <label><input type="checkbox" value="6"> Sat</label>
+            <label><input type="checkbox" value="7"> Sun</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="persona">Anything about your business we should know? <span class="hint">(optional)</span></label>
+          <input id="persona" name="persona" type="text" placeholder="e.g. small family crew, keep it casual">
+        </div>
+
         <p class="trial-note" id="trialNote" style="display:none">You won't be charged for 7 days. Cancel anytime before then and you pay nothing.</p>
         <button type="submit" class="btn btn-primary cta-btn" id="submitBtn">Continue to secure checkout →</button>
         <div class="secure">
@@ -175,6 +219,14 @@
     growth:  "https://buy.stripe.com/14A8wRfqs6sQ1jz05I7ss04",
     pro:     "https://buy.stripe.com/bJefZj0vyaJ68M13hU7ss05"
   };
+  // Same plans, but with a 7-day free trial baked in — reps send these (via
+  // ?trial=1) only to a prospect who's hesitant specifically on price. Not
+  // charged until day 8.
+  var TRIAL_STRIPE_LINKS = {
+    starter: "https://buy.stripe.com/7sY28t2DGbNa7HXaKm7ss06",
+    growth:  "https://buy.stripe.com/aFa28ta683gE9Q5dWy7ss07",
+    pro:     "https://buy.stripe.com/4gM5kF7Y06sQd2h4lY7ss08"
+  };
   var LEAD_ENDPOINT = "https://formsubmit.co/ajax/leads@missedcallkiller.com";
 
   var PLANS = {
@@ -190,6 +242,7 @@
   }
   var planKey = getPlan();
   var plan = PLANS[planKey];
+  var isTrial = new URLSearchParams(location.search).get('trial') === '1' && !plan.custom;
 
   document.getElementById('planName').textContent = plan.name;
   document.getElementById('planPrice').textContent = plan.price;
@@ -205,7 +258,7 @@
     document.getElementById('linePrice').textContent = plan.price + ' / mo';
   }
 
-  if (plan.trial) {
+  if (isTrial) {
     var trialLi = document.createElement('li');
     trialLi.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>First 7 days free</b>';
     document.querySelector('.summary .incl').prepend(trialLi);
@@ -220,17 +273,27 @@
     e.preventDefault();
     if(!form.checkValidity()){ form.reportValidity(); return; }
 
+    var selectedDays = Array.prototype.slice.call(document.querySelectorAll('#daysRow input:checked'))
+      .map(function(el){ return el.value; }).join(',');
+
     var data = {
       plan: plan.name,
+      trialSignup: isTrial ? 'yes' : 'no',
       name: document.getElementById('name').value.trim(),
       business: document.getElementById('business').value.trim(),
       phone: document.getElementById('phone').value.trim(),
       email: document.getElementById('email').value.trim(),
       trade: document.getElementById('trade').value,
-      _subject: 'New signup (' + plan.name + '): ' + document.getElementById('business').value.trim()
+      services: document.getElementById('services').value.trim(),
+      calendarEmail: document.getElementById('calendar').value.trim(),
+      hoursStart: document.getElementById('hoursStart').value,
+      hoursEnd: document.getElementById('hoursEnd').value,
+      days: selectedDays,
+      persona: document.getElementById('persona').value.trim(),
+      _subject: 'New signup (' + plan.name + (isTrial ? ', trial' : '') + '): ' + document.getElementById('business').value.trim()
     };
 
-    var link = STRIPE_LINKS[planKey];
+    var link = (isTrial ? TRIAL_STRIPE_LINKS : STRIPE_LINKS)[planKey];
     var live = link && link.indexOf('REPLACE_WITH') !== 0;
 
     btn.disabled = true;
