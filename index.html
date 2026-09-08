@@ -45,7 +45,14 @@
   .brand .mark{width:30px;height:30px;border-radius:8px;background:#181818;display:grid;place-items:center;box-shadow:0 4px 14px rgba(24,24,24,.25)}
   .brand .mark svg{width:17px;height:17px}
   .brand .logo{height:36px;width:auto;display:block}
-  .nav .btn{padding:11px 20px;font-size:.95rem}
+  .nav .btn{padding:11px 20px;font-size:.95rem;white-space:nowrap}
+  .nav-links{display:flex;align-items:center;gap:22px}
+  .nav-link{color:var(--ink-soft);text-decoration:none;font-size:.95rem;font-weight:600;white-space:nowrap}
+  @media (max-width:400px){
+    .nav-links{gap:10px}
+    .brand .logo{height:28px}
+    .nav .btn{padding:9px 14px;font-size:.85rem}
+  }
 
   /* Hero */
   .hero{background:radial-gradient(680px 460px at 10% -8%,rgba(220,207,194,.55),transparent 62%),radial-gradient(620px 500px at 100% 8%,rgba(164,160,154,.28),transparent 62%),linear-gradient(180deg,#faf8f2,#efeae0);color:var(--ink);padding:90px 0 98px;overflow:hidden}
@@ -187,8 +194,8 @@
     <a href="#top" class="brand">
       <img class="logo" src="reclaim-logo.svg" alt="Reclaim">
     </a>
-    <div style="display:flex;align-items:center;gap:22px">
-      <a href="pricing.html" style="color:var(--ink-soft);text-decoration:none;font-size:.95rem;font-weight:600">Pricing</a>
+    <div class="nav-links">
+      <a href="pricing.html" class="nav-link">Pricing</a>
       <a href="pricing.html" class="btn btn-primary">Get started</a>
     </div>
   </div>

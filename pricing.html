@@ -44,8 +44,14 @@
   .brand .mark svg{width:17px;height:17px}
   .brand .logo{height:34px;width:auto;display:block}
   .nav .links{display:flex;align-items:center;gap:22px}
-  .nav .links a{color:#333333;text-decoration:none;font-size:.95rem;font-weight:600}
+  .nav .links a{color:#333333;text-decoration:none;font-size:.95rem;font-weight:600;white-space:nowrap}
   .nav .links a:hover{color:var(--ink)}
+  .nav .btn{white-space:nowrap}
+  @media (max-width:400px){
+    .nav .links{gap:10px}
+    .brand .logo{height:28px}
+    .nav .btn{padding:9px 14px;font-size:.85rem}
+  }
   .nav .btn{padding:11px 20px;font-size:.95rem}
   @media (max-width:640px){.nav .links a.hideph{display:none}}
 
