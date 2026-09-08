@@ -79,7 +79,9 @@
   .field .hint{font-weight:400;color:var(--ink-mute);font-size:.85rem}
   .days-row{display:flex;flex-wrap:wrap;gap:14px;padding:6px 0 2px}
   .days-row label{display:flex;align-items:center;gap:6px;font-weight:500;font-size:.92rem;margin-bottom:0}
-  .days-row input[type="checkbox"]{width:auto;padding:0;accent-color:var(--go)}
+  .days-row input[type="checkbox"],.days-row input[type="radio"]{width:auto;padding:0;accent-color:var(--go)}
+  .forwarding-row{flex-direction:column;gap:10px}
+  .forwarding-row label{font-weight:500;align-items:flex-start}
   input[type="time"]{cursor:pointer}
   .section-divider{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
   .section-divider .lbl{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
@@ -132,7 +134,7 @@
         </div>
         <div class="row">
           <div class="field">
-            <label for="phone">Phone</label>
+            <label for="phone">Phone <span class="hint">(your cell — where calls/texts from us go)</span></label>
             <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(801) 555-0142">
           </div>
           <div class="field">
@@ -156,6 +158,17 @@
           <span class="lbl">Getting you set up</span>
         </div>
 
+        <div class="field">
+          <label>How should incoming calls reach you?</label>
+          <div class="days-row forwarding-row" id="forwardingRow">
+            <label><input type="radio" name="forwarding" value="direct" checked> Give me a new number to start using — I'll switch to giving this out</label>
+            <label><input type="radio" name="forwarding" value="conditional"> Keep my current number — forward calls I miss to the new number</label>
+          </div>
+        </div>
+        <div class="field" id="currentNumberField" style="display:none">
+          <label for="currentNumber">What's your current business number? <span class="hint">(the one you'll set to forward missed calls)</span></label>
+          <input id="currentNumber" name="currentNumber" type="tel" placeholder="(801) 555-0142">
+        </div>
         <div class="field">
           <label for="services">What services do you offer?</label>
           <input id="services" name="services" type="text" required placeholder="e.g. drain cleaning, water heater repair, sewer line repair">
@@ -269,6 +282,17 @@
   var form = document.getElementById('startForm');
   var btn = document.getElementById('submitBtn');
 
+  var currentNumberField = document.getElementById('currentNumberField');
+  var currentNumberInput = document.getElementById('currentNumber');
+  document.querySelectorAll('#forwardingRow input[name="forwarding"]').forEach(function(radio){
+    radio.addEventListener('change', function(){
+      var conditional = form.querySelector('input[name="forwarding"]:checked').value === 'conditional';
+      currentNumberField.style.display = conditional ? 'block' : 'none';
+      currentNumberInput.required = conditional;
+      if (!conditional) currentNumberInput.value = '';
+    });
+  });
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     if(!form.checkValidity()){ form.reportValidity(); return; }
@@ -284,6 +308,8 @@
       phone: document.getElementById('phone').value.trim(),
       email: document.getElementById('email').value.trim(),
       trade: document.getElementById('trade').value,
+      forwardingMode: form.querySelector('input[name="forwarding"]:checked').value,
+      currentNumber: currentNumberInput.value.trim(),
       services: document.getElementById('services').value.trim(),
       calendarEmail: document.getElementById('calendar').value.trim(),
       hoursStart: document.getElementById('hoursStart').value,
