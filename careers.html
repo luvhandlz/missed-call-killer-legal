@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Reclaim — Sell With Us</title>
+<meta name="description" content="Commission-only sales roles with Reclaim. $100–$280 per closed sale, no cap, work your own hours.">
+<style>
+  :root{
+    --ink:#181818; --ink-soft:#333333; --ink-mute:#9a948a;
+    --bg:#f5f2ea; --bg-alt:#ece7db; --line:#e3dccf;
+    --brand:#181818; --go:#1e5a48;
+    --shadow:0 16px 44px rgba(24,24,24,.10);
+    --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6}
+  h1,h2,h3{margin:0;line-height:1.15;letter-spacing:-.02em}
+  p{margin:0}
+  a{color:inherit}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-weight:700;font-size:1.05rem;
+    padding:16px 26px;border-radius:12px;border:0;cursor:pointer;text-decoration:none;transition:transform .12s,background .12s,box-shadow .12s}
+  .btn-primary{background:#1e5a48;color:#f5f2ea;box-shadow:0 8px 22px rgba(30,90,72,.3)}
+  .btn-primary:hover{background:#17453a;transform:translateY(-1px)}
+  .btn-primary:disabled{background:#c9c3b8;cursor:default;transform:none;box-shadow:none}
+
+  header.site{background:rgba(245,242,234,.92);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:900px;margin:0 auto;padding:0 24px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;font-size:1.08rem}
+  .brand .logo{height:34px;width:auto;display:block}
+  .nav .back{color:#333333;text-decoration:none;font-size:.95rem;font-weight:600}
+  .nav .back:hover{color:var(--ink)}
+
+  main{padding:0 0 80px}
+  .hero{padding:64px 0 20px;text-align:center}
+  .eyebrow{display:inline-block;font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#333333;background:rgba(220,207,194,.55);padding:6px 14px;border-radius:30px}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3rem);font-weight:850;margin-top:18px}
+  .hero h1 .hl{color:var(--go)}
+  .hero p{margin-top:16px;font-size:1.15rem;color:#333333;max-width:56ch;margin-left:auto;margin-right:auto}
+  .hero .cta-row{margin-top:28px}
+
+  section{padding:44px 0}
+  .card{background:#fcfaf5;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:var(--shadow)}
+  .section-head{margin-bottom:22px}
+  .section-head .eyebrow{margin-bottom:10px}
+  .section-head h2{font-size:1.6rem;font-weight:820}
+
+  .pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+  @media (max-width:700px){.pay-grid{grid-template-columns:1fr}}
+  .pay-card{background:var(--bg-alt);border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center}
+  .pay-card h3{font-size:.95rem;font-weight:700;color:#333333;text-transform:uppercase;letter-spacing:.04em}
+  .pay-card .amt{font-size:2.2rem;font-weight:850;margin-top:8px;color:var(--go)}
+  .pay-card .note{font-size:.85rem;color:var(--ink-mute);margin-top:4px}
+  .pay-note{margin-top:18px;font-size:.95rem;color:#333333}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+  @media (max-width:700px){.steps{grid-template-columns:1fr}}
+  .step .num{width:36px;height:36px;border-radius:10px;background:var(--ink);color:#f5f2ea;font-weight:800;display:grid;place-items:center;margin-bottom:12px}
+  .step h4{font-size:1.05rem;font-weight:750}
+  .step p{margin-top:6px;color:#333333;font-size:.95rem}
+
+  .checklist{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:12px}
+  .checklist li{display:flex;gap:12px;align-items:flex-start;font-size:1rem;color:#181818}
+  .checklist svg{flex:0 0 20px;width:20px;height:20px;color:var(--go);margin-top:2px}
+
+  .fine-list{margin:18px 0 0;padding-left:20px;color:#333333;font-size:.92rem;display:flex;flex-direction:column;gap:8px}
+
+  form .field{margin-top:16px}
+  label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+  input,textarea{width:100%;font:inherit;padding:14px 15px;border:1.5px solid var(--line);border-radius:11px;background:#fcfaf5;color:var(--ink);transition:border-color .12s}
+  input:focus,textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(24,24,24,.14)}
+  textarea{resize:vertical;min-height:90px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:600px){.row{grid-template-columns:1fr}}
+  .cta-btn{width:100%;margin-top:22px}
+  .notlive{display:none;margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:11px;padding:13px 15px;font-size:.9rem}
+  .thanks{display:none;margin-top:16px;background:#e2ece7;border:1px solid #bcd6c9;color:#17453a;border-radius:11px;padding:13px 15px;font-size:.9rem;font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a href="index.html" class="brand">
+      <img class="logo" src="reclaim-logo.svg" alt="Reclaim">
+    </a>
+    <a href="index.html" class="back">← Back to home</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <span class="eyebrow">We're hiring</span>
+      <h1>Make <span class="hl">$100–$280</span> every time you close a sale.</h1>
+      <p>Reclaim is looking for commission-only sales reps across Utah. No cap on what you can earn, no set hours — just call, demo, and close.</p>
+      <div class="cta-row"><a href="#apply" class="btn btn-primary">Apply now →</a></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap card">
+      <div class="section-head"><span class="eyebrow">What you'll make</span><h2>Straight commission, no cap</h2></div>
+      <div class="pay-grid">
+        <div class="pay-card"><h3>Starter sale</h3><div class="amt">$100</div><div class="note">per closed deal</div></div>
+        <div class="pay-card"><h3>Growth sale</h3><div class="amt">$180</div><div class="note">per closed deal</div></div>
+        <div class="pay-card"><h3>Pro sale</h3><div class="amt">$280</div><div class="note">per closed deal</div></div>
+      </div>
+      <p class="pay-note">Full-price signups pay out the same day the customer's card is charged. Free-trial signups pay once they've actually stayed the week and been charged for real. There's no limit on how many you can close, and bonuses go out to whoever's closing the most.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap card">
+      <div class="section-head"><span class="eyebrow">How it works</span><h2>Three things, on repeat</h2></div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h4>Call</h4><p>Work a real list of Utah home-service businesses — plumbers, HVAC, electricians, and more.</p></div>
+        <div class="step"><div class="num">2</div><h4>Demo</h4><p>Text their own phone live on the call so they see exactly what their customers would get.</p></div>
+        <div class="step"><div class="num">3</div><h4>Close</h4><p>Send the payment link, mark it won, and the commission shows up on your Earnings tab.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap card">
+      <div class="section-head"><span class="eyebrow">What we give you</span><h2>Everything's already built</h2></div>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> A full training course — watch it, learn the pitch, start dialing the same day.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> A real call list, the exact script, and objection responses for the calls you'll actually get.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> A live demo tool that texts a prospect's own phone in seconds — it's the thing that actually closes deals.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Your own dashboard to track leads, commission, and where you rank.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap card">
+      <div class="section-head"><span class="eyebrow">Is this you?</span><h2>Good fit if you're...</h2></div>
+      <ul class="checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Comfortable getting on the phone with strangers and hearing "no" a lot before you hear "yes."</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Self-motivated — this is commission-only, so what you put in is what you get out.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Based in Utah (you'll be calling Utah businesses) with your own phone.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap card">
+      <div class="section-head"><span class="eyebrow">The fine print</span><h2>How this actually works</h2></div>
+      <ul class="fine-list">
+        <li>This is a 1099 independent-contractor role — commission-only, no guaranteed income or set hours.</li>
+        <li>You place every call and text yourself — no auto-dialers or robocalls, ever.</li>
+        <li>You'll sign a short contractor agreement before working any leads; a W-9 is required before you get paid.</li>
+        <li>The call list, script, and everything in the sales tools are confidential — for reps only.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="apply">
+    <div class="wrap card">
+      <div class="section-head"><span class="eyebrow">Ready to start</span><h2>Apply</h2></div>
+      <form id="applyForm" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Smith">
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(801) 555-0142">
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com">
+        </div>
+        <div class="field">
+          <label for="why">Why do you think you'd be good at this? <span style="font-weight:400;color:var(--ink-mute)">(a couple sentences is plenty)</span></label>
+          <textarea id="why" name="why" placeholder="Sales experience, why you're interested, anything relevant"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary cta-btn" id="submitBtn">Submit application →</button>
+        <div class="notlive" id="notLive">Something went wrong sending that. Please email us directly at <a href="mailto:leads@missedcallkiller.com">leads@missedcallkiller.com</a>.</div>
+        <div class="thanks" id="thanksMsg">Thanks! We'll reach out if it looks like a fit.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script>
+  var LEAD_ENDPOINT = "https://formsubmit.co/ajax/leads@missedcallkiller.com";
+  var form = document.getElementById('applyForm');
+  var btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+
+    var data = {
+      name: document.getElementById('name').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      why: document.getElementById('why').value.trim(),
+      _subject: 'New sales rep application: ' + document.getElementById('name').value.trim()
+    };
+
+    var settled = false;
+    var showFailure = function(){
+      if (settled) return;
+      settled = true;
+      document.getElementById('notLive').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Submit application →';
+    };
+    setTimeout(showFailure, 8000);
+
+    btn.disabled = true;
+    btn.textContent = 'One sec…';
+
+    fetch(LEAD_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function(res){ return res.json().then(function(d){ return {ok: res.ok, data: d}; }); })
+      .then(function(result){
+        if (settled) return;
+        if(!result.ok || !result.data || result.data.success !== true) throw new Error('not accepted');
+        settled = true;
+        form.querySelectorAll('input, textarea, button').forEach(function(el){ el.disabled = true; });
+        document.getElementById('thanksMsg').style.display = 'block';
+      }).catch(showFailure);
+  });
+</script>
+</body>
+</html>
