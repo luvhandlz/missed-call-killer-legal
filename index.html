@@ -48,6 +48,9 @@
   .nav .btn{padding:11px 20px;font-size:.95rem;white-space:nowrap}
   .nav-links{display:flex;align-items:center;gap:22px}
   .nav-link{color:var(--ink-soft);text-decoration:none;font-size:.95rem;font-weight:600;white-space:nowrap}
+  .nav-careers{color:var(--ink-mute);text-decoration:none;font-size:.85rem;font-weight:500;white-space:nowrap}
+  .nav-careers:hover{color:var(--ink-soft)}
+  @media (max-width:600px){.nav-careers{display:none}}
   @media (max-width:400px){
     .nav-links{gap:10px}
     .brand .logo{height:28px}
@@ -195,6 +198,7 @@
       <img class="logo" src="reclaim-logo.svg" alt="Reclaim">
     </a>
     <div class="nav-links">
+      <a href="careers.html" class="nav-careers">Careers</a>
       <a href="pricing.html" class="nav-link">Pricing</a>
       <a href="pricing.html" class="btn btn-primary">Get started</a>
     </div>
