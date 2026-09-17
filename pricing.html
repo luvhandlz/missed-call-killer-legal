@@ -123,6 +123,42 @@
     .pricing{margin-top:-20px}
     section{padding:48px 0}
   }
+
+  /* ---------- showcase (mockups) ---------- */
+  .showcase{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; align-items:start}
+  @media (max-width:900px){ .showcase{grid-template-columns:1fr; max-width:320px; margin-inline:auto} }
+  .showcase-item{display:flex; flex-direction:column; gap:14px; align-items:center}
+  .showcase-cap{font-size:.9rem; color:var(--ink-mute); text-align:center; max-width:27ch; line-height:1.5}
+
+  .mock-frame{width:100%; max-width:280px}
+  .phone-frame{background:var(--ink); border-radius:30px; padding:8px; box-shadow:0 18px 38px -20px rgba(0,0,0,.35)}
+  .phone-notch{width:64px; height:15px; background:var(--ink); border-radius:0 0 11px 11px; margin:0 auto 4px}
+  .phone-screen{background:var(--bg); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; height:430px}
+  .phone-bar{background:#fcfaf5; padding:11px 14px; font-weight:800; font-size:.85rem; border-bottom:1px solid var(--line); text-align:center; flex-shrink:0}
+  .msg-thread{flex:1; overflow:hidden; padding:12px 10px; display:flex; flex-direction:column; gap:8px}
+  .bubble{padding:8px 12px; border-radius:14px; font-size:.76rem; line-height:1.45; max-width:85%}
+  .bubble-out{background:#fcfaf5; border:1px solid var(--line); color:var(--ink); align-self:flex-start; border-bottom-left-radius:4px}
+  .bubble-in{background:rgba(30,90,72,.14); color:var(--ink); align-self:flex-end; border-bottom-right-radius:4px}
+  .bubble-alert{background:#1e5a48; color:#f5f2ea; align-self:flex-start; border-bottom-left-radius:4px}
+
+  .browser-frame{background:#fcfaf5; border:1px solid var(--line); border-radius:16px; overflow:hidden; box-shadow:var(--shadow)}
+  .browser-bar{display:flex; align-items:center; gap:6px; padding:9px 12px; background:var(--bg-alt); border-bottom:1px solid var(--line)}
+  .browser-dot{width:8px; height:8px; border-radius:50%; background:var(--line); flex-shrink:0}
+  .browser-url{margin-left:6px; font-size:.7rem; color:var(--ink-mute); background:var(--bg); border-radius:6px; padding:3px 8px; font-family:ui-monospace,monospace; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .browser-screen{padding:16px; height:414px; overflow:hidden}
+  .dash-title{font-weight:800; font-size:1rem}
+  .dash-sub{font-size:.72rem; color:var(--ink-mute); margin-top:2px; margin-bottom:12px}
+  .dash-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:12px}
+  .dash-stat{background:var(--bg-alt); border:1px solid var(--line); border-radius:8px; padding:8px 4px; text-align:center}
+  .dash-stat .num{font-weight:800; font-size:1.2rem; font-variant-numeric:tabular-nums}
+  .dash-stat .lbl{font-size:.58rem; color:var(--ink-mute); text-transform:uppercase; letter-spacing:.03em}
+  .dash-card2{background:var(--bg-alt); border:1px solid var(--line); border-radius:10px; padding:10px 12px}
+  .dash-card2-h{font-weight:800; font-size:.8rem; margin-bottom:6px}
+  .dash-row{display:flex; align-items:center; gap:5px; flex-wrap:wrap; font-size:.68rem; padding:6px 0; border-top:1px solid var(--line)}
+  .dash-row:first-of-type{border-top:0}
+  .pill{font-size:.56rem; font-weight:800; text-transform:uppercase; letter-spacing:.03em; padding:2px 6px; border-radius:999px; white-space:nowrap}
+  .pill-status{background:rgba(30,90,72,.14); color:#1e5a48}
+  .pill-needs{background:#e2b93b; color:#3a2c05}
 </style>
 </head>
 <body>
@@ -154,6 +190,75 @@
     </div>
   </section>
 
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">See it in action</span>
+        <h2 style="margin-top:10px">What actually happens, from missed call to booked job.</h2>
+        <p>Real screens, real conversation. Numbers and names below are a sample business, not a real customer.</p>
+      </div>
+
+      <div class="showcase">
+        <div class="showcase-item">
+          <div class="mock-frame phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-bar">Summit Plumbing &amp; Drain</div>
+              <div class="msg-thread">
+                <div class="bubble bubble-out">Hey! This is Summit Plumbing &amp; Drain — sorry we missed your call. What can we help you with today?</div>
+                <div class="bubble bubble-in">Hi, my water heater is leaking pretty bad, need someone out soon</div>
+                <div class="bubble bubble-out">Sorry to hear that! I can get someone out today at 2pm or tomorrow at 9am — which works better?</div>
+                <div class="bubble bubble-in">Today at 2 works great</div>
+                <div class="bubble bubble-out">You're booked for Tue, Sep 22, 2:00 PM! We'll see you then.</div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-cap">The customer's phone — a missed call becomes a booked job in five texts.</div>
+        </div>
+
+        <div class="showcase-item">
+          <div class="mock-frame browser-frame">
+            <div class="browser-bar">
+              <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+              <span class="browser-url">reclaim.app/dashboard/••••••</span>
+            </div>
+            <div class="browser-screen">
+              <div class="dash-title">Summit Plumbing &amp; Drain</div>
+              <div class="dash-sub">Your Reclaim dashboard</div>
+              <div class="dash-stats">
+                <div class="dash-stat"><div class="num">4</div><div class="lbl">Leads</div></div>
+                <div class="dash-stat"><div class="num">1</div><div class="lbl">Booked</div></div>
+                <div class="dash-stat"><div class="num">1</div><div class="lbl">Upcoming</div></div>
+              </div>
+              <div class="dash-card2">
+                <div class="dash-card2-h">Recent activity</div>
+                <div class="dash-row"><span>+1 801 555 1204</span><span class="pill pill-status">New</span></div>
+                <div class="dash-row"><span>+1 801 555 1203</span><span class="pill pill-status">In progress</span></div>
+                <div class="dash-row"><span>+1 801 555 1202</span><span class="pill pill-status">New</span><span class="pill pill-needs">Needs you — text 1202</span></div>
+                <div class="dash-row"><span>+1 801 555 1201</span><span class="pill pill-status">Booked</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-cap">Their own private dashboard — every lead, every booking, live. No login.</div>
+        </div>
+
+        <div class="showcase-item">
+          <div class="mock-frame phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-bar">Reclaim Alerts</div>
+              <div class="msg-thread">
+                <div class="bubble bubble-alert">New Reclaim booking: Water heater leak repair — Tue, Sep 22, 2:00 PM. Customer: +1 801 555 1201.</div>
+                <div class="bubble bubble-alert">Reclaim heads up: +1 801 555 1202 needs your attention — asked for a real person. Reply "1202 your message" to text them directly.</div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-cap">The owner's own phone — alerted the instant a job books, or a customer needs them.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="pricing">
     <div class="wrap">
       <div class="cards">
@@ -161,15 +266,13 @@
         <div class="card">
           <h3>Starter</h3>
           <p class="who">Solo operators &amp; smaller shops just getting started.</p>
-          <div class="price"><span class="amt">$99</span><span class="per">/month</span></div>
+          <div class="price"><span class="amt">$149</span><span class="per">/month</span></div>
           <p class="setup">No setup fee</p>
           <a href="get-started.html?plan=starter" class="btn btn-outline">Get started</a>
           <ul class="feat">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Automatic text-back in under 60 seconds</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> AI conversation that qualifies the lead</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Books straight to your calendar</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> One business phone line</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Email support</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 75 missed-call conversations / month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 1 business phone line</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Every feature below, included</b></li>
           </ul>
         </div>
 
@@ -177,36 +280,31 @@
           <span class="badge">Most popular</span>
           <h3>Growth</h3>
           <p class="who">Busy shops that miss real money in leads every week.</p>
-          <div class="price"><span class="amt">$179</span><span class="per">/month</span></div>
+          <div class="price"><span class="amt">$249</span><span class="per">/month</span></div>
           <p class="setup">No setup fee</p>
           <a href="get-started.html?plan=growth" class="btn btn-primary">Get started</a>
           <ul class="feat">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Everything in Starter, plus:</b></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 3 business phone lines</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Higher lead volume</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority support</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Custom message tone for your brand</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Monthly check-in on results</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 200 missed-call conversations / month</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 1 business phone line</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Every feature below, included</b></li>
           </ul>
         </div>
 
         <div class="card">
-          <h3>Industrial</h3>
-          <p class="who">10+ lines or multi-location at scale — priced around your actual call volume.</p>
-          <div class="price"><span class="amt" style="font-size:2rem">Let's talk</span></div>
-          <p class="setup">Custom quote, no setup fee</p>
-          <a href="get-started.html?plan=industrial" class="btn btn-outline">Request a quote</a>
+          <h3>Pro</h3>
+          <p class="who">High-volume shops running multiple crews or locations.</p>
+          <div class="price"><span class="amt">$399</span><span class="per">/month</span></div>
+          <p class="setup">No setup fee</p>
+          <a href="get-started.html?plan=pro" class="btn btn-outline">Get started</a>
           <ul class="feat">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Everything in Growth, plus:</b></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Built for 10+ phone lines</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Multiple numbers / locations</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fastest priority support</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Hands-on setup for each location</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited missed-call conversations</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 3 phone lines / locations</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> <b>Every feature below, plus priority support</b></li>
           </ul>
         </div>
 
       </div>
-      <p style="text-align:center;color:var(--ink-mute);font-size:.92rem;margin-top:22px">Not sure which fits? We'll size it to your call volume — reach out and we'll point you to the right plan.</p>
+      <p style="text-align:center;color:var(--ink-mute);font-size:.92rem;margin-top:22px">Every plan includes the exact same system below — plans only differ by monthly call volume and phone lines. Running 10+ lines or multiple locations? <a href="get-started.html?plan=industrial" style="color:var(--go);font-weight:700">Get a custom quote</a> instead.</p>
     </div>
   </section>
 
@@ -217,12 +315,15 @@
         <h2 style="margin-top:10px">The full system, on every plan.</h2>
       </div>
       <div class="inc-grid">
-        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg><div><b>60-second text-back</b><span>Every missed call gets an instant, friendly reply.</span></div></div>
-        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><div><b>Auto-booking</b><span>Real times from your real calendar, booked for you.</span></div></div>
-        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Works 24/7</b><span>Nights, weekends, and mid-job — it never stops.</span></div></div>
-        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Keep your number</b><span>Nothing changes for you. No new app to learn.</span></div></div>
-        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div><b>Sounds human</b><span>Friendly texts that represent your business well.</span></div></div>
-        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><b>Done-for-you setup</b><span>We build it, wire it to your calendar, and test it.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4V5Z"/><path d="M12 8.5v3l2 1.3"/></svg><div><b>Instant text-back</b><span>Every missed call gets a reply within seconds — no voicemail, no cold lead.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9.5h16M8 3v3M16 3v3"/><path d="M9 14l2 2 4-4"/></svg><div><b>AI books the job</b><span>Checks your real calendar, offers real times, books it directly.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3v11H4V8Z"/><circle cx="12" cy="13.5" r="3.2"/></svg><div><b>Sees photos, not just words</b><span>A customer's photo of the problem gets an actual, relevant reply.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.4 5 5.5.8-4 3.9.9 5.5-4.8-2.6-4.8 2.6.9-5.5-4-3.9 5.5-.8 2.4-5Z"/></svg><div><b>Automatic review requests</b><span>Once a job's done, the customer gets an automatic ask for a review.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 8.5h17"/><path d="M7 12h4M7 15h7"/></svg><div><b>Your own live dashboard</b><span>Every lead, every job, every conversation — one private link, no login.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10a6 6 0 0 1 12 0c0 4 1.5 5.5 1.5 5.5h-15S6 14 6 10Z"/><path d="M10 18.5a2 2 0 0 0 4 0"/></svg><div><b>Instant heads-up texts</b><span>The moment a job books — or a customer needs you — you get a text.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h11M15 8l-3-3M15 8l-3 3"/><path d="M20 16H9M9 16l3-3M9 16l3 3"/></svg><div><b>Direct hand-off, no new app</b><span>Reply to the same text to talk to the customer yourself, anytime.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V6M16 20v-8M22 20H2"/></svg><div><b>Weekly recap</b><span>One simple text a week: calls caught, jobs booked.</span></div></div>
+        <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 3v5.2c0 4.6-3 7.6-7 8.8-4-1.2-7-4.2-7-8.8V6.5l7-3Z"/><path d="M9.2 12l2 2 3.6-4"/></svg><div><b>Built-in compliance</b><span>Opt-out handling and robocall filtering, automatic.</span></div></div>
       </div>
     </div>
   </section>
@@ -247,7 +348,7 @@
         <details><summary>Is there a long-term contract?</summary><p>No. It's month-to-month. If it's not catching you jobs, you can cancel — we're confident it will.</p></details>
         <details><summary>How fast can I be up and running?</summary><p>Usually within a few days of getting started. Setup on our end is quick once we have your number and calendar access.</p></details>
         <details><summary>What if I get more calls than my plan covers?</summary><p>Good problem to have. We'll just move you up to the plan that fits your volume — no penalty, no drama.</p></details>
-        <details><summary>Which plan should I choose?</summary><p>Most shops land on Growth. If you're a solo operator, Starter is plenty; if you're running 10+ lines or multiple locations, reach out about Industrial and we'll size it to your actual call volume.</p></details>
+        <details><summary>Which plan should I choose?</summary><p>Most shops land on Growth. If you're a solo operator, Starter is plenty; if you're catching a high volume of calls or running multiple crews, Pro removes the cap. Running 10+ lines or multiple locations? Reach out about a custom Industrial quote instead.</p></details>
       </div>
     </div>
   </section>

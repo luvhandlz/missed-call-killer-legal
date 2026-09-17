@@ -104,7 +104,7 @@
     <aside class="summary">
       <span class="eyebrow">Your plan</span>
       <h2 id="planName">Growth</h2>
-      <div class="price"><span class="amt" id="planPrice">$450</span><span class="per">/month</span></div>
+      <div class="price"><span class="amt" id="planPrice">$249</span><span class="per">/month</span></div>
       <div class="lines">
         <div class="line"><span>Monthly</span><b id="linePrice">$450 / mo</b></div>
       </div>
@@ -225,7 +225,9 @@
   //     even if they don't finish checkout. Uses formsubmit.co (no
   //     signup) to your leads@ inbox — activate it once (see guide).
   // ============================================================
-  // LIVE Stripe payment links (real charges). Swapped in 2026-08-24 — founding-customer pricing, no setup fee.
+  // LIVE Stripe payment links (real charges). These URLs stay the same when the
+  // price changes — update each Payment Link's underlying Price in the Stripe
+  // dashboard to match PLANS below, don't create new links for a price change.
   var STRIPE_LINKS = {
     starter: "https://buy.stripe.com/28E5kF0vy8AY1jzg4G7ss03",
     growth:  "https://buy.stripe.com/14A8wRfqs6sQ1jz05I7ss04",
@@ -242,9 +244,9 @@
   var LEAD_ENDPOINT = "https://formsubmit.co/ajax/leads@missedcallkiller.com";
 
   var PLANS = {
-    starter:    { name: "Starter",    price: "$99" },
-    growth:     { name: "Growth",     price: "$179" },
-    pro:        { name: "Pro",        price: "$279" },
+    starter:    { name: "Starter",    price: "$149" },
+    growth:     { name: "Growth",     price: "$249" },
+    pro:        { name: "Pro",        price: "$399" },
     industrial: { name: "Industrial", price: "Custom", custom: true }
   };
 
