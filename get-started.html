@@ -225,18 +225,13 @@
   //     even if they don't finish checkout. Uses formsubmit.co (no
   //     signup) to your leads@ inbox — activate it once (see guide).
   // ============================================================
-  // LIVE Stripe payment links (real charges). These URLs stay the same when the
-  // price changes — update each Payment Link's underlying Price in the Stripe
-  // dashboard to match PLANS below, don't create new links for a price change.
+  // LIVE Stripe payment links (real charges). Every one of these has a 7-day
+  // free trial baked directly into the Payment Link itself (set in Stripe, not
+  // here) — there is no separate non-trial link anymore, so every signup gets
+  // the trial. These URLs stay the same when the price changes — update each
+  // Payment Link's underlying Price in the Stripe dashboard to match PLANS
+  // below, don't create new links for a price change.
   var STRIPE_LINKS = {
-    starter: "https://buy.stripe.com/28E5kF0vy8AY1jzg4G7ss03",
-    growth:  "https://buy.stripe.com/14A8wRfqs6sQ1jz05I7ss04",
-    pro:     "https://buy.stripe.com/bJefZj0vyaJ68M13hU7ss05"
-  };
-  // Same plans, but with a 7-day free trial baked in — reps send these (via
-  // ?trial=1) only to a prospect who's hesitant specifically on price. Not
-  // charged until day 8.
-  var TRIAL_STRIPE_LINKS = {
     starter: "https://buy.stripe.com/7sY28t2DGbNa7HXaKm7ss06",
     growth:  "https://buy.stripe.com/aFa28ta683gE9Q5dWy7ss07",
     pro:     "https://buy.stripe.com/4gM5kF7Y06sQd2h4lY7ss08"
@@ -256,7 +251,10 @@
   }
   var planKey = getPlan();
   var plan = PLANS[planKey];
-  var isTrial = new URLSearchParams(location.search).get('trial') === '1' && !plan.custom;
+  // Every real Payment Link now includes the 7-day trial (see STRIPE_LINKS above),
+  // so this is just "is the trial messaging/tracking relevant for this plan" —
+  // true for every non-custom plan, not gated by a ?trial=1 param anymore.
+  var isTrial = !plan.custom;
 
   document.getElementById('planName').textContent = plan.name;
   document.getElementById('planPrice').textContent = plan.price;
@@ -320,7 +318,7 @@
       _subject: 'New signup (' + plan.name + (isTrial ? ', trial' : '') + '): ' + document.getElementById('business').value.trim()
     };
 
-    var link = (isTrial ? TRIAL_STRIPE_LINKS : STRIPE_LINKS)[planKey];
+    var link = STRIPE_LINKS[planKey];
     var live = link && link.indexOf('REPLACE_WITH') !== 0;
 
     btn.disabled = true;
