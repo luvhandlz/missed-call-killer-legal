@@ -68,8 +68,9 @@
   .cta-btn{width:100%;margin-top:22px}
   .secure{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--ink-mute);font-size:.85rem}
   .secure svg{width:15px;height:15px}
-  .fine{margin-top:12px;font-size:.8rem;color:var(--ink-mute);text-align:center}
-  .fine a{color:var(--brand)}
+  .consent-row{display:flex;align-items:flex-start;gap:10px;margin-top:18px;font-size:.85rem;color:var(--ink-soft);font-weight:400}
+  .consent-row input{width:auto;margin-top:2px;flex:none}
+  .consent-row a{color:var(--brand)}
   .trial-note{margin-bottom:10px;font-size:.88rem;font-weight:600;color:var(--ink);text-align:center;background:#eef6f1;border:1px solid #cfe6d9;border-radius:8px;padding:9px 12px}
   .notlive{display:none;margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:11px;padding:13px 15px;font-size:.9rem}
   .thanks{display:none;margin-top:16px;background:#e2ece7;border:1px solid #bcd6c9;color:#17453a;border-radius:11px;padding:13px 15px;font-size:.9rem;font-weight:600}
@@ -201,12 +202,15 @@
         </div>
 
         <p class="trial-note" id="trialNote" style="display:none">You won't be charged for 7 days. Cancel anytime before then and you pay nothing.</p>
+        <label class="consent-row">
+          <input type="checkbox" name="agreeToTerms" required>
+          <span>I agree to Reclaim's <a href="terms.html" target="_blank" rel="noopener">Terms of Service</a>, <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>, and <a href="refund.html" target="_blank" rel="noopener">Refund Policy</a>.</span>
+        </label>
         <button type="submit" class="btn btn-primary cta-btn" id="submitBtn">Continue to secure checkout →</button>
         <div class="secure">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
           Secure payment powered by Stripe
         </div>
-        <p class="fine">By continuing you agree to our <a href="terms.html">Terms</a> &amp; <a href="privacy.html">Privacy Policy</a>.</p>
         <div class="notlive" id="notLive">Online checkout is being finalized. Please <a href="index.html#contact">contact us</a> and we'll get you set up right away.</div>
         <div class="thanks" id="thanksMsg">Thanks! We've got your info — expect a custom quote from us within a day.</div>
       </form>
