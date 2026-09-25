@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Reclaim — Features</title>
+<meta name="description" content="Everything Reclaim does for your trade business: instant AI text-back, online booking, crew management, invoicing and payments, recurring memberships, QuickBooks sync, reviews, and reporting — all in one place.">
+<style>
+  :root{
+    --ink:#181818; --ink-soft:#333333; --ink-mute:#9a948a;
+    --bg:#f5f2ea; --bg-alt:#ece7db; --line:#e3dccf;
+    --brand:#181818; --brand-dark:#333333; --brand-ink:#181818;
+    --go:#1e5a48; --navy:#181818;
+    --radius:20px; --shadow:0 16px 44px rgba(24,24,24,.10);
+    --maxw:1120px;
+    --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.12;margin:0;letter-spacing:-.02em}
+  p{margin:0}
+  a{color:inherit}
+  img{max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:700;font-size:1.02rem;
+    padding:15px 26px;border-radius:14px;border:0;cursor:pointer;text-decoration:none;transition:transform .14s ease,box-shadow .14s ease,background .14s ease,border-color .14s ease}
+  .btn-primary{background:#1e5a48;color:#f5f2ea;box-shadow:0 10px 24px rgba(30,90,72,.28)}
+  .btn-primary:hover{background:#17453a;transform:translateY(-2px);box-shadow:0 14px 30px rgba(30,90,72,.34)}
+  .eyebrow{display:inline-block;font-weight:700;font-size:.76rem;letter-spacing:.11em;text-transform:uppercase;color:var(--brand-dark);background:rgba(220,207,194,.55);padding:6px 13px;border-radius:30px}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.02em;text-decoration:none;font-size:1.08rem}
+  .brand .logo{height:36px;width:auto;display:block}
+  .links{display:flex;align-items:center;gap:22px}
+  .links a{color:var(--ink-soft);text-decoration:none;font-size:.95rem;font-weight:600;white-space:nowrap}
+  .links .btn{padding:11px 20px;font-size:.95rem}
+  @media (max-width:560px){.hideph{display:none}}
+
+  .hero{background:radial-gradient(680px 460px at 10% -8%,rgba(220,207,194,.55),transparent 62%),linear-gradient(180deg,#faf8f2,#efeae0);padding:64px 0 56px;text-align:center}
+  .hero h1{font-size:clamp(2.3rem,4.6vw,3.4rem);font-weight:800;letter-spacing:-.03em;margin-top:14px}
+  .hero p{margin-top:16px;font-size:1.14rem;color:var(--ink-soft);max-width:56ch;margin-left:auto;margin-right:auto}
+
+  section{padding:64px 0}
+  .section-head{max-width:640px;margin:0 auto 40px;text-align:center}
+  .section-head h2{font-size:clamp(1.6rem,3.2vw,2.1rem);font-weight:800;letter-spacing:-.03em}
+  .section-head p{margin-top:12px;font-size:1.05rem;color:var(--ink-soft)}
+  section:nth-of-type(even){background:var(--bg-alt)}
+
+  .bgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .benefit{display:flex;gap:16px;background:#fcfaf5;border:1px solid var(--line);border-radius:18px;padding:24px;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+  .benefit:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(15,23,42,.08);border-color:#d6e0f2}
+  .benefit .ic{flex:0 0 44px;width:44px;height:44px;border-radius:11px;background:rgba(220,207,194,.55);color:var(--brand);display:grid;place-items:center}
+  .benefit .ic svg{width:22px;height:22px}
+  .benefit h3{font-size:1.08rem;margin-bottom:5px}
+  .benefit p{color:var(--ink-soft);font-size:.96rem}
+
+  .cta{background:var(--navy);color:#f5f2ea;text-align:center}
+  .cta h2{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:800}
+  .cta p{margin-top:12px;color:#c9c3b8;font-size:1.08rem}
+  .cta .btn{margin-top:26px}
+
+  footer.site{background:var(--navy);color:#a4a09a;padding:44px 0;border-top:1px solid rgba(255,255,255,.06)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot .brand{font-size:1rem;color:#fff}
+  .foot a{color:#d8d0c4;text-decoration:none;margin-left:22px;font-size:.95rem}
+  .foot a:hover{color:#f5f2ea}
+  .foot .copy{color:#8a857c;font-size:.9rem;width:100%;margin-top:8px}
+
+  @media (max-width:760px){
+    .bgrid{grid-template-columns:1fr}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <img class="logo" src="reclaim-logo.svg" alt="Reclaim">
+    </a>
+    <div class="links">
+      <a href="index.html#how" class="hideph">How it works</a>
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="get-started.html?plan=growth" class="btn btn-primary">Get started</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Features</span>
+      <h1>Everything your trade business needs, in one place.</h1>
+      <p>From the moment a call comes in to the moment you get paid — Reclaim runs the whole thing, so you can run your business instead.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Never miss a lead</span>
+        <h2 style="margin-top:10px">Every missed call becomes a real conversation.</h2>
+      </div>
+      <div class="bgrid">
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div>
+          <div><h3>Instant AI text-back</h3><p>When a call goes unanswered, we text them back in seconds — day or night, weekends included.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3v11H4V8Z"/><circle cx="12" cy="13.5" r="3.2"/></svg></div>
+          <div><h3>Understands photos</h3><p>A picture of the leak or the broken unit gets a real, specific reply — not a generic "thanks for the photo."</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h8M8 14h5M21 12c0 4.97-4.03 9-9 9-1.5 0-2.9-.37-4.13-1.02L3 21l1.06-3.71A8.96 8.96 0 0 1 3 12c0-4.97 4.03-9 9-9s9 4.03 9 9Z"/></svg></div>
+          <div><h3>Speaks English and Spanish</h3><p>The AI automatically replies in whichever language your customer texts in — no setup required.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+          <div><h3>Knows when to hand off</h3><p>If a lead gets frustrated, asks for a person, or needs something outside what the AI knows, it texts you immediately.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Book more jobs</span>
+        <h2 style="margin-top:10px">Less back-and-forth, more jobs on the calendar.</h2>
+      </div>
+      <div class="bgrid">
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+          <div><h3>Books straight into your calendar</h3><p>The AI checks your real Google Calendar and books the job itself, right in the conversation.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <div><h3>Online self-booking link</h3><p>A customer who finds you online can pick an open time and book directly — no call needed.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><h3>Automatic reminder texts</h3><p>Appointments get an automatic reminder text before the job, so you get fewer no-shows.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+          <div><h3>"On my way" texts</h3><p>Your crew can send a one-tap heads-up text to the customer the moment they're headed to the job.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Run your crew</span>
+        <h2 style="margin-top:10px">Everything your techs need, nothing they don't.</h2>
+      </div>
+      <div class="bgrid">
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><circle cx="19" cy="8" r="3"/></svg></div>
+          <div><h3>Assign jobs to techs</h3><p>Give each job to a specific technician, right from your dashboard.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg></div>
+          <div><h3>Their own simple job list</h3><p>Every tech gets their own link to see just their jobs — no app to install.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div><h3>Clock in and out</h3><p>Techs clock in and out per job, and labor cost calculates itself automatically.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <div><h3>Photos on every job</h3><p>Attach a photo to a job to show it's done, right from a phone.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div><h3>Real profit per job</h3><p>Track materials and labor cost per job to see what you actually made, not just what you billed.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Get paid faster</span>
+        <h2 style="margin-top:10px">From quote to cash, without the paperwork.</h2>
+      </div>
+      <div class="bgrid">
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></div>
+          <div><h3>Estimates by text</h3><p>Send a customer an estimate, they approve or decline with one tap — no printing, no email.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
+          <div><h3>Get paid directly</h3><p>Send an invoice, customers pay online straight into your own bank account. Reclaim never touches the money.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2.1l4 4-4 4"/><path d="M3 12.2v-2a4 4 0 0 1 4-4h14"/><path d="M7 21.9l-4-4 4-4"/><path d="M21 11.8v2a4 4 0 0 1-4 4H3"/></svg></div>
+          <div><h3>Recurring maintenance plans</h3><p>Sell plans like "$15/mo, 2 tune-ups a year" for real, predictable income between jobs.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div>
+          <div><h3>Your own pricebook</h3><p>Build a catalog of your standard services and prices so quoting takes seconds, not a fresh conversation every time.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h3>Syncs to QuickBooks</h3><p>Paid invoices sync straight to your books automatically — no manual data entry.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Look professional</span>
+        <h2 style="margin-top:10px">Build trust before you even show up.</h2>
+      </div>
+      <div class="bgrid">
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.4 5 5.5.8-4 3.9.9 5.5-4.8-2.6-4.8 2.6.9-5.5-4-3.9 5.5-.8 2.4-5Z"/></svg></div>
+          <div><h3>Automatic review requests</h3><p>Once a job's marked done, happy customers get an automatic text asking for a Google or Yelp review.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div><h3>Your real reviews, in one place</h3><p>Pulls your actual Google reviews right into your dashboard — no need to go check Google yourself.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 8.5h17"/><path d="M7 12h4M7 15h7"/></svg></div>
+          <div><h3>A portal just for your customers</h3><p>Customers get their own private link to see their jobs, estimates, and invoices — no login needed.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Know your numbers</span>
+        <h2 style="margin-top:10px">See how your business is actually doing.</h2>
+      </div>
+      <div class="bgrid">
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+          <div><h3>Revenue and profit, in plain language</h3><p>See what you actually made this month — not a spreadsheet you have to build yourself.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg></div>
+          <div><h3>See where you're headed</h3><p>A simple 6-month revenue trend, so you can see the direction your business is actually moving.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+          <div><h3>A weekly recap text</h3><p>Every week, a text telling you exactly what Reclaim caught for you.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Your dashboard, your rules</span>
+        <h2 style="margin-top:10px">Simple to run, easy to change.</h2>
+      </div>
+      <div class="bgrid">
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 8.5h17"/></svg></div>
+          <div><h3>One private link</h3><p>No login, no app to install — just your own dashboard link, organized into simple tabs.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+          <div><h3>Update it yourself</h3><p>Change your hours, your services, even how the AI should sound — anytime, without calling us.</p></div>
+        </div>
+        <div class="benefit">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div><h3>We handle setup</h3><p>Your dedicated business line, wired to your calendar, tuned for your trade — all done for you.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>See it running on your own number.</h2>
+      <p>One saved job usually covers the whole month.</p>
+      <a href="pricing.html" class="btn btn-primary">See pricing</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <a href="index.html" class="brand">
+      <img class="logo" src="reclaim-logo-light.svg" alt="Reclaim">
+    </a>
+    <nav>
+      <a href="index.html#how">How it works</a>
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="sms-terms.html">SMS Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="cookie.html">Cookie Policy</a>
+    </nav>
+    <p class="copy">© 2026 Reclaim. Automated text-back for local home-services businesses.</p>
+  </div>
+</footer>
+
+</body>
+</html>
