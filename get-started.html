@@ -153,6 +153,18 @@
             <option>Other home services</option>
           </select>
         </div>
+        <div class="field">
+          <label for="timezone">What time zone are you in? <span class="hint">(so appointment times and reminders show up right)</span></label>
+          <select id="timezone" name="timezone" required>
+            <option value="America/New_York">Eastern</option>
+            <option value="America/Chicago">Central</option>
+            <option value="America/Denver" selected>Mountain</option>
+            <option value="America/Phoenix">Arizona (no daylight saving)</option>
+            <option value="America/Los_Angeles">Pacific</option>
+            <option value="America/Anchorage">Alaska</option>
+            <option value="Pacific/Honolulu">Hawaii</option>
+          </select>
+        </div>
 
         <div class="section-divider">
           <span class="lbl">Getting you set up</span>
@@ -314,6 +326,7 @@
       phone: document.getElementById('phone').value.trim(),
       email: document.getElementById('email').value.trim(),
       trade: document.getElementById('trade').value,
+      timezone: document.getElementById('timezone').value,
       forwardingMode: form.querySelector('input[name="forwarding"]:checked').value,
       currentNumber: currentNumberInput.value.trim(),
       services: document.getElementById('services').value.trim(),
