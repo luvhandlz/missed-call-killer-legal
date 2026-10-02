@@ -159,6 +159,22 @@
   .pill{font-size:.56rem; font-weight:800; text-transform:uppercase; letter-spacing:.03em; padding:2px 6px; border-radius:999px; white-space:nowrap}
   .pill-status{background:rgba(30,90,72,.14); color:#1e5a48}
   .pill-needs{background:#e2b93b; color:#3a2c05}
+
+  /* Savings calculator */
+  .calc{padding:64px 0}
+  .calc-card{max-width:880px;margin:0 auto;background:#fcfaf5;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+  .calc-card h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.03em}
+  .calc-card .lead{margin-top:10px;color:var(--ink-soft)}
+  .calc-fields{display:grid;gap:14px;margin-top:20px}
+  .calc-fields label{display:block;font-weight:700;font-size:.85rem;margin-bottom:5px}
+  .calc-fields input,.calc-fields select{width:100%;font:inherit;font-size:1.05rem;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff}
+  .calc-out{background:#181818;color:#f5f2ea;border-radius:18px;padding:28px;text-align:center}
+  .calc-out .k{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#a4a09a;font-weight:700}
+  .calc-out .v{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:850;letter-spacing:-.03em;margin:6px 0;color:#fff}
+  .calc-out .m{color:#c9c3b8;font-size:.95rem}
+  .calc-out .btn{margin-top:18px}
+  .calc-fine{margin-top:12px;font-size:.78rem;color:#8a857c}
+  @media (max-width:760px){.calc-card{grid-template-columns:1fr;padding:24px}}
 </style>
 </head>
 <body>
@@ -191,6 +207,34 @@
       </div>
     </div>
   </section>
+
+  <!-- WHAT A MISSED CALL COSTS -->
+  <section class="calc" id="calc">
+    <div class="wrap">
+      <div class="calc-card">
+        <div>
+          <span class="eyebrow">Run your own numbers</span>
+          <h2 style="margin-top:12px">What are missed calls costing you?</h2>
+          <p class="lead">Plug in your own numbers. This is an estimate, not a promise &mdash; your results depend on your business.</p>
+          <div class="calc-fields">
+            <div><label for="cCalls">Calls you miss per week</label><input id="cCalls" type="number" min="0" max="500" value="10" inputmode="numeric"></div>
+            <div><label for="cJob">Average job is worth ($)</label><input id="cJob" type="number" min="0" max="100000" value="400" inputmode="numeric"></div>
+            <div><label for="cShare">How many of those could you win back?</label>
+              <select id="cShare"><option value="0.1">About 1 in 10</option><option value="0.25" selected>About 1 in 4</option><option value="0.4">About 4 in 10</option></select></div>
+          </div>
+        </div>
+        <div class="calc-out">
+          <div class="k">Jobs you could win back</div>
+          <div class="v" id="cMoney">$4,330</div>
+          <div class="m" id="cMath">about 11 jobs a month &middot; plans start at $149/mo</div>
+          <a href="#plans" class="btn btn-primary">Pick a plan &darr;</a>
+          <p class="calc-fine">Based on about 4.3 weeks a month. Win-back rate is your assumption, not a guarantee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 
   <section>
     <div class="wrap">
@@ -261,7 +305,7 @@
     </div>
   </section>
 
-  <section class="pricing">
+  <section class="pricing" id="plans">
     <div class="wrap">
       <div class="cards">
 
@@ -386,5 +430,21 @@
   </div>
 </footer>
 
+<script>
+  (function(){
+    var calls=document.getElementById('cCalls'), job=document.getElementById('cJob'), share=document.getElementById('cShare');
+    if(!calls) return;
+    var money=document.getElementById('cMoney'), math=document.getElementById('cMath');
+    function fmt(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+    function update(){
+      var c=Math.max(0,parseFloat(calls.value)||0), j=Math.max(0,parseFloat(job.value)||0), r=parseFloat(share.value)||0.25;
+      var jobs=c*4.33*r, total=jobs*j;
+      money.textContent=fmt(total);
+      math.innerHTML='about '+Math.round(jobs)+' job'+(Math.round(jobs)===1?'':'s')+' a month &middot; plans start at $149/mo';
+    }
+    ['input','change'].forEach(function(ev){ [calls,job,share].forEach(function(el){ el.addEventListener(ev,update); }); });
+    update();
+  })();
+</script>
 </body>
 </html>
