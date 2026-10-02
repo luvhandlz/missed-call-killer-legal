@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<title>Reclaim — See It In Action</title>
+<meta name="description" content="A look inside Reclaim: the owner dashboard, the crew's phone view, what your customers see, and the sales rep portal — all in one visual tour.">
+<style>
+  :root{
+    --ink:#181818; --ink-soft:#333333; --ink-mute:#9a948a;
+    --bg:#f5f2ea; --bg-alt:#ece7db; --line:#e3dccf;
+    --brand:#181818; --brand-dark:#333333; --go:#1e5a48; --navy:#181818;
+    --radius:20px; --shadow:0 16px 44px rgba(24,24,24,.10);
+    --maxw:1120px;
+    --font:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    /* the real app's palette, used inside the product mockups */
+    --a-bg:#ddd5c2; --a-surface:#eee7d6; --a-ink:#211d17; --a-soft:#4d473d; --a-mute:#7c7566; --a-line:#c7bea7; --a-accent:#1e5a48; --a-accent-soft:#cfe0d6;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{line-height:1.12;margin:0;letter-spacing:-.02em}
+  p{margin:0}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:700;font-size:1.02rem;padding:15px 26px;border-radius:14px;border:0;cursor:pointer;text-decoration:none;transition:transform .14s ease,box-shadow .14s ease,background .14s ease}
+  .btn-primary{background:#1e5a48;color:#f5f2ea;box-shadow:0 10px 24px rgba(30,90,72,.28)}
+  .btn-primary:hover{background:#17453a;transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  .eyebrow{display:inline-block;font-weight:700;font-size:.76rem;letter-spacing:.11em;text-transform:uppercase;color:var(--brand-dark);background:rgba(220,207,194,.55);padding:6px 13px;border-radius:30px}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand .logo{height:36px;width:auto;display:block}
+  .links{display:flex;align-items:center;gap:22px}
+  .links a{color:var(--ink-soft);text-decoration:none;font-size:.95rem;font-weight:600;white-space:nowrap}
+  .links .btn{padding:11px 20px;font-size:.95rem;color:#f5f2ea}
+  @media (max-width:640px){.hideph{display:none}}
+  @media (max-width:460px){.links{gap:14px}.links .btn{padding:10px 14px}.brand .logo{height:30px}.hide-xs{display:none}}
+
+  .hero{background:radial-gradient(680px 460px at 10% -8%,rgba(220,207,194,.55),transparent 62%),linear-gradient(180deg,#faf8f2,#efeae0);padding:64px 0 48px;text-align:center}
+  .hero h1{font-size:clamp(2.3rem,4.6vw,3.4rem);font-weight:800;letter-spacing:-.03em;margin-top:14px}
+  .hero p.lead{margin:16px auto 0;font-size:1.14rem;color:var(--ink-soft);max-width:58ch}
+  .jump{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+  .jump a{text-decoration:none;font-weight:700;font-size:.92rem;padding:10px 18px;border-radius:999px;background:#fcfaf5;border:1px solid var(--line);transition:all .14s}
+  .jump a:hover{background:var(--ink);color:#f5f2ea;border-color:var(--ink)}
+
+  section{padding:72px 0}
+  section.alt{background:var(--bg-alt)}
+  .section-head{max-width:680px;margin:0 auto 36px;text-align:center}
+  .section-head h2{font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.03em;margin-top:10px}
+  .section-head p{margin-top:12px;font-size:1.05rem;color:var(--ink-soft)}
+  .caption{text-align:center;color:var(--ink-mute);font-size:.84rem;margin-top:14px}
+
+  /* ---------- browser frame ---------- */
+  .browser{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+  .browser .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#f1ede3;border-bottom:1px solid var(--line)}
+  .browser .dot{width:10px;height:10px;border-radius:50%;background:#d8d1c1}
+  .browser .url{margin-left:10px;flex:1;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 12px;font-size:.74rem;color:var(--ink-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* ---------- app mock (matches the real dashboard look) ---------- */
+  .app{display:flex;background:var(--a-bg);color:var(--a-ink);min-height:470px;font-size:.84rem;text-align:left}
+  .app .side{width:176px;flex:none;background:var(--a-surface);border-right:1px solid var(--a-line);padding:18px 12px}
+  .app .side .mark{font-family:'Sora',sans-serif;font-weight:800;font-size:.86rem;letter-spacing:.05em;color:var(--a-accent);margin:0 6px 16px}
+  .app .side button{display:block;width:100%;text-align:left;font:inherit;font-weight:600;font-size:.8rem;color:var(--a-soft);background:none;border:0;padding:8px 10px;border-radius:9px;cursor:pointer}
+  .app .side button:hover{background:var(--a-bg)}
+  .app .side button.on{background:var(--a-accent);color:#fff}
+  .app .main{flex:1;min-width:0;padding:20px 22px}
+  .app h4{font-family:'Sora',sans-serif;font-size:1.05rem;margin:0 0 2px}
+  .app .sub{color:var(--a-mute);font-size:.76rem;margin-bottom:14px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  .stat{background:var(--a-surface);border:1px solid var(--a-line);border-radius:11px;padding:11px 12px}
+  .stat b{display:block;font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;line-height:1.1}
+  .stat span{font-size:.64rem;color:var(--a-mute);text-transform:uppercase;letter-spacing:.04em}
+  .acard{background:var(--a-surface);border:1px solid var(--a-line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+  .acard h5{font-family:'Sora',sans-serif;font-size:.86rem;margin:0 0 8px}
+  .arow{padding:9px 0;border-top:1px solid var(--a-line);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .arow:first-of-type{border-top:0}
+  .arow .t{font-weight:700;font-size:.82rem}
+  .arow .s{color:var(--a-mute);font-size:.72rem;margin-top:1px}
+  .pill{display:inline-block;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:999px;background:var(--a-accent-soft);color:var(--a-accent);white-space:nowrap}
+  .pill.warn{background:#e2b93b;color:#3a2c05}
+  .pill.grey{background:var(--a-bg);color:var(--a-mute);border:1px solid var(--a-line)}
+  .pill.red{background:#ecc9c4;color:#8a2a1e}
+  .pill.dark{background:var(--a-accent);color:#fff}
+  .seg{display:flex;gap:4px}
+  .seg i{font-style:normal;font-size:.62rem;font-weight:700;padding:3px 8px;border-radius:999px;border:1px solid var(--a-line);background:var(--a-bg);color:var(--a-mute)}
+  .seg i.on{background:var(--a-accent);border-color:var(--a-accent);color:#fff}
+  .chk{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .chk span{font-size:.7rem;color:var(--a-soft);background:var(--a-bg);border:1px solid var(--a-line);border-radius:7px;padding:2px 8px}
+  .chk span.d{background:var(--a-accent-soft);border-color:var(--a-accent-soft);color:var(--a-accent)}
+  .chk span.d::before{content:"✓ "}
+  .chk span:not(.d)::before{content:"○ "}
+  .msg{padding:7px 11px;border-radius:10px;font-size:.76rem;max-width:84%;margin-top:6px}
+  .msg.u{background:var(--a-accent-soft)}
+  .msg.a{background:var(--a-bg);border:1px solid var(--a-line);margin-left:auto}
+  .msg small{display:block;font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--a-mute);margin-bottom:1px}
+  .bars{display:flex;align-items:flex-end;gap:12px;height:130px;padding-top:6px}
+  .bars div{flex:1;text-align:center;font-size:.64rem;color:var(--a-mute);display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+  .bars div i{display:block;background:var(--a-accent);border-radius:6px 6px 0 0;margin-bottom:4px;opacity:.55}
+  .bars div.now i{opacity:1}
+  .bars div b{font-size:.66rem;color:var(--a-ink);margin-bottom:3px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .thumbs{display:flex;gap:6px;margin-top:7px}
+  .thumbs i{width:38px;height:38px;border-radius:8px;border:1px solid var(--a-line);background:linear-gradient(135deg,#b9c9bd,#8aa595)}
+  .thumbs i:nth-child(2){background:linear-gradient(135deg,#d6c7a6,#a89670)}
+  .thumbs i:nth-child(3){background:linear-gradient(135deg,#bdc3cf,#7f8aa0)}
+  .stars{color:#c99a1c;letter-spacing:1px}
+  .mpanel[hidden]{display:none}
+
+  /* ---------- callouts ---------- */
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  .why div{background:#fcfaf5;border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+  .why b{display:block;margin-bottom:4px;font-size:1rem}
+  .why span{color:var(--ink-soft);font-size:.92rem}
+
+  /* ---------- phones ---------- */
+  .phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;justify-items:center;align-items:start}
+  .phone-col{display:flex;flex-direction:column;align-items:center;max-width:290px}
+  .phone-col h4{font-size:1.02rem;margin-top:18px;text-align:center}
+  .phone-col p{color:var(--ink-soft);font-size:.9rem;text-align:center;margin-top:6px}
+  .phone{width:262px;background:#111;border-radius:36px;padding:9px;box-shadow:var(--shadow)}
+  .phone .scr{background:var(--a-bg);border-radius:28px;overflow:hidden;min-height:440px;color:var(--a-ink);font-size:.78rem;text-align:left;display:flex;flex-direction:column}
+  .phone .notch{width:84px;height:18px;background:#111;border-radius:0 0 14px 14px;margin:0 auto}
+  .phone .head{padding:8px 16px 10px;font-family:'Sora',sans-serif;font-weight:800;font-size:.9rem;display:flex;justify-content:space-between;align-items:baseline}
+  .phone .head small{font-family:var(--font);font-weight:600;font-size:.68rem;color:var(--a-mute)}
+  .phone .body{padding:0 12px 14px;flex:1}
+  .sms{background:#f4f1e9}
+  .sms .head{background:#fcfaf5;border-bottom:1px solid var(--a-line)}
+  .bub{max-width:82%;padding:8px 11px;border-radius:16px;margin-top:7px;font-size:.76rem;line-height:1.4}
+  .bub.in{background:#fff;border:1px solid var(--a-line);border-bottom-left-radius:5px}
+  .bub.out{background:var(--a-accent);color:#fff;margin-left:auto;border-bottom-right-radius:5px}
+  .bub.book{background:var(--a-accent-soft);color:var(--a-accent);font-weight:700;border:1px solid #b6cfc2}
+  .jcard{background:var(--a-surface);border:1px solid var(--a-line);border-radius:13px;padding:11px 12px;margin-bottom:9px}
+  .jcard .t{font-weight:800;font-size:.82rem}
+  .jcard .s{color:var(--a-mute);font-size:.7rem}
+  .mbtn{display:inline-block;font-size:.66rem;font-weight:800;padding:5px 11px;border-radius:999px;margin:7px 5px 0 0;border:1px solid var(--a-accent);background:var(--a-surface);color:var(--a-accent)}
+  .mbtn.f{background:var(--a-accent);color:#fff}
+  .big{display:block;text-align:center;font-weight:800;padding:11px;border-radius:12px;background:var(--a-accent);color:#fff;margin-top:12px;font-size:.82rem}
+  .big.o{background:transparent;color:var(--a-soft);border:1px solid var(--a-line);margin-top:8px}
+  .slot{display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid var(--a-line);border-radius:10px;margin-top:7px;background:var(--a-surface);font-weight:600;font-size:.76rem}
+  .slot::before{content:"";width:12px;height:12px;border-radius:50%;border:2px solid var(--a-line);flex:none}
+  .slot.on{border-color:var(--a-accent);background:var(--a-accent-soft)}
+  .slot.on::before{border-color:var(--a-accent);background:radial-gradient(circle,var(--a-accent) 45%,transparent 50%)}
+  .amt{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:800;text-align:center;margin:8px 0 2px}
+
+  /* ---------- journey ---------- */
+  .journey{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:j}
+  .jstep{background:#fcfaf5;border:1px solid var(--line);border-radius:16px;padding:18px 16px;position:relative}
+  .jstep::before{counter-increment:j;content:counter(j);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--go);color:#fff;font-weight:800;font-size:.85rem;margin-bottom:10px}
+  .jstep b{display:block;font-size:.98rem;margin-bottom:4px}
+  .jstep span{font-size:.86rem;color:var(--ink-soft)}
+  .jstep em{display:block;margin-top:8px;font-style:normal;font-size:.68rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--go)}
+
+  .rep-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .lesson{display:flex;align-items:center;gap:9px;padding:7px 0;border-top:1px solid var(--a-line);font-size:.78rem;font-weight:600}
+  .lesson:first-of-type{border-top:0}
+  .lesson i{width:18px;height:18px;border-radius:50%;background:var(--a-accent);color:#fff;font-style:normal;font-size:.62rem;display:grid;place-items:center;flex:none}
+  .lesson i.todo{background:var(--a-bg);border:1.5px solid var(--a-line);color:transparent}
+  .prog{height:8px;background:var(--a-bg);border:1px solid var(--a-line);border-radius:99px;overflow:hidden;margin:6px 0 4px}
+  .prog u{display:block;height:100%;background:var(--a-accent);text-decoration:none}
+
+  .cta{background:var(--navy);color:#f5f2ea;text-align:center}
+  .cta h2{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:800}
+  .cta p{margin-top:12px;color:#c9c3b8;font-size:1.08rem}
+  .cta .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .cta .btn-ghost{color:#f5f2ea;border-color:rgba(255,255,255,.3)}
+  .cta .btn-ghost:hover{border-color:#fff}
+
+  footer.site{background:var(--navy);color:#a4a09a;padding:44px 0;border-top:1px solid rgba(255,255,255,.06)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot nav{display:flex;flex-wrap:wrap;gap:6px 22px}
+  .foot a{color:#d8d0c4;text-decoration:none;font-size:.95rem}
+  .foot a:hover{color:#f5f2ea}
+  .foot .copy{color:#8a857c;font-size:.9rem;width:100%;margin-top:8px}
+
+  @media (max-width:900px){
+    .journey{grid-template-columns:repeat(2,1fr)}
+    .why{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    section{padding:52px 0}
+    .app{flex-direction:column}
+    .app .side{width:auto;display:flex;gap:4px;overflow-x:auto;border-right:0;border-bottom:1px solid var(--a-line);padding:10px}
+    .app .side .mark{display:none}
+    .app .side button{white-space:nowrap;width:auto;flex:none}
+    .app .main{padding:16px}
+    .stats,.two,.rep-grid{grid-template-columns:1fr}
+    .stat{display:flex;justify-content:space-between;align-items:center}
+  }
+  @media (max-width:420px){.journey{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><img class="logo" src="reclaim-logo.svg" alt="Reclaim"></a>
+    <div class="links">
+      <a href="index.html#how" class="hideph">How it works</a>
+      <a href="tour.html" class="hideph">See it in action</a>
+      <a href="features.html" class="hide-xs">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="get-started.html?plan=growth" class="btn btn-primary">Get started</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" style="padding-bottom:56px">
+    <div class="wrap">
+      <span class="eyebrow">See it in action</span>
+      <h1>Don't take our word for it.<br>Here's what it looks like.</h1>
+      <p class="lead">A look inside every side of Reclaim — what you see as the owner, what your crew sees on their phones, what your customers see, and what our sales reps work from.</p>
+      <div class="jump">
+        <a href="#journey">One job, start to finish</a>
+        <a href="#owner">Business owner</a>
+        <a href="#crew">Your crew</a>
+        <a href="#customer">Your customers</a>
+        <a href="#reps">Sales reps</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ONE JOB, START TO FINISH ============ -->
+  <section id="journey" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The big picture</span>
+        <h2>One missed call, all the way to a 5-star review.</h2>
+        <p>This is what happens on a single job — and almost none of it needs you to touch your phone.</p>
+      </div>
+      <div class="journey">
+        <div class="jstep"><b>A call goes unanswered</b><span>You're on a roof. The phone rings. You can't pick up.</span><em>Automatic</em></div>
+        <div class="jstep"><b>They get a text in seconds</b><span>Reclaim's AI starts the conversation and finds out what they need.</span><em>Automatic</em></div>
+        <div class="jstep"><b>It's booked</b><span>The AI checks your real calendar and locks in a time — right in the text thread.</span><em>Automatic</em></div>
+        <div class="jstep"><b>Reminder, then "on my way"</b><span>The customer gets a reminder. Your tech taps one button when they head over.</span><em>1 tap</em></div>
+        <div class="jstep"><b>Job done, photo taken</b><span>Tech checks off the list, clocks out, snaps a photo. Labor cost calculates itself.</span><em>Crew</em></div>
+        <div class="jstep"><b>Estimate approved</b><span>The customer taps to approve — add-ons and all. No paper, no email.</span><em>1 tap</em></div>
+        <div class="jstep"><b>Invoice paid</b><span>They pay by card from a text link. Money goes straight to your bank.</span><em>Straight to you</em></div>
+        <div class="jstep"><b>Books update themselves</b><span>The payment lands in QuickBooks. Your reports update.</span><em>Automatic</em></div>
+        <div class="jstep"><b>Review request</b><span>A happy customer gets a text asking for a Google review.</span><em>Automatic</em></div>
+        <div class="jstep"><b>Referral link</b><span>They get a link to share. New customers who use it are tracked back to them.</span><em>Automatic</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OWNER ============ -->
+  <section id="owner">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">For business owners</span>
+        <h2>Your whole business, on one screen.</h2>
+        <p>This is your dashboard. Click around — every tab below is a real part of it.</p>
+      </div>
+
+      <div class="browser">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">reclaim — Peak HVAC dashboard</span></div>
+        <div class="app" id="ownerApp">
+          <div class="side">
+            <div class="mark">RECLAIM</div>
+            <button class="on" data-p="jobs">Jobs</button>
+            <button data-p="convo">Conversations</button>
+            <button data-p="est">Estimates</button>
+            <button data-p="inv">Invoices</button>
+            <button data-p="mem">Memberships</button>
+            <button data-p="rep">Reporting</button>
+            <button data-p="rev">Reviews</button>
+          </div>
+          <div class="main">
+
+            <div class="mpanel" data-p="jobs">
+              <h4>Peak HVAC</h4>
+              <div class="sub">Everything that's on your plate, in one place.</div>
+              <div class="stats">
+                <div class="stat"><b>42</b><span>Texted-back leads</span></div>
+                <div class="stat"><b>17</b><span>Jobs booked</span></div>
+                <div class="stat"><b>$8,420</b><span>Collected this month</span></div>
+              </div>
+              <div class="acard">
+                <h5>Jobs</h5>
+                <div class="arow">
+                  <div><div class="t">Furnace not igniting <span class="pill grey">Assigned: Dave</span></div><div class="s">Maria G. · Tue 9:00 AM</div>
+                    <div class="chk"><span class="d">Shut off gas</span><span class="d">Inspect igniter</span><span>Test run</span></div>
+                    <div class="thumbs"><i></i><i></i></div></div>
+                  <div><div class="seg"><i>Scheduled</i><i class="on">In progress</i><i>Done</i></div><div class="s" style="text-align:right;margin-top:6px">Clocked in 9:04 AM</div></div>
+                </div>
+                <div class="arow">
+                  <div><div class="t">Water heater replacement <span class="pill grey">Assigned: Luis</span></div><div class="s">Tom R. · Mon 1:00 PM</div>
+                    <div class="s" style="margin-top:5px">Job $1,450 · Materials $612 · Labor $196</div></div>
+                  <div style="text-align:right"><div class="seg" style="justify-content:flex-end"><i>Scheduled</i><i>In progress</i><i class="on">Done</i></div><div style="margin-top:6px"><span class="pill">$642 profit · 44%</span></div></div>
+                </div>
+                <div class="arow">
+                  <div><div class="t">AC tune-up <span class="pill grey">Unassigned</span></div><div class="s">Priya S. · Wed 3:30 PM · booked by the AI</div></div>
+                  <div class="seg"><i class="on">Scheduled</i><i>In progress</i><i>Done</i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mpanel" data-p="convo" hidden>
+              <h4>Conversations</h4>
+              <div class="sub">Every text thread, saved and readable. The AI flags the ones that need you.</div>
+              <div class="acard">
+                <div class="arow" style="display:block">
+                  <div class="t">(801) ••• 4421 <span class="pill">Booked</span></div>
+                  <div class="msg u"><small>Customer</small>our furnace stopped working and its freezing in here</div>
+                  <div class="msg a"><small>Reclaim AI</small>So sorry — let's get you warm. I have a tech free tomorrow 9 AM or 1 PM. Which works?</div>
+                  <div class="msg u"><small>Customer</small>9 please</div>
+                  <div class="msg a"><small>Reclaim AI</small>You're booked for Tue 9:00 AM. We'll see you then!</div>
+                </div>
+                <div class="arow" style="display:block">
+                  <div class="t">(385) ••• 0173 <span class="pill warn">Needs you</span></div>
+                  <div class="msg u"><small>Customer</small>can I just talk to the owner about the warranty?</div>
+                  <div class="msg a"><small>Reclaim AI</small>Absolutely — I've texted the owner to call you right away.</div>
+                </div>
+                <div class="arow" style="display:block">
+                  <div class="t">(435) ••• 9920 <span class="pill grey">Spanish</span></div>
+                  <div class="msg u"><small>Customer</small>Hola, necesito que revisen mi aire acondicionado</div>
+                  <div class="msg a"><small>Reclaim AI</small>¡Claro! ¿Qué día le queda mejor para la visita?</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mpanel" data-p="est" hidden>
+              <h4>Estimates</h4>
+              <div class="sub">Send a quote by text. Customers tick the extras they want.</div>
+              <div class="acard">
+                <h5>New estimate</h5>
+                <div class="arow" style="border:0;gap:6px"><span class="pill grey">Pick from your pricebook ▾</span><span class="pill grey">Customer phone</span><span class="pill dark">Add &amp; text it</span></div>
+              </div>
+              <div class="acard">
+                <div class="arow" style="display:block">
+                  <div style="display:flex;justify-content:space-between;gap:8px"><div class="t">AC tune-up — Priya S.</div><span class="pill warn">Pending</span></div>
+                  <div class="chk"><span class="d">Tune-up · $129</span><span class="d">Filter upgrade · $45 (add-on)</span><span>Duct cleaning · $180 (add-on)</span></div>
+                  <div class="s" style="margin-top:5px">Sent by text 2 hours ago · opens a page on the customer's phone</div>
+                </div>
+                <div class="arow">
+                  <div><div class="t">Water heater replacement — Tom R.</div><div class="s">$1,450 · approved Friday</div></div><span class="pill">Approved</span>
+                </div>
+                <div class="arow">
+                  <div><div class="t">Panel upgrade — Chen L.</div><div class="s">$2,800 · a quick reminder text went out after 3 days</div></div><span class="pill grey">Waiting</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mpanel" data-p="inv" hidden>
+              <h4>Invoices &amp; payments</h4>
+              <div class="sub">Customers pay by card from a text link. Money goes straight to your bank.</div>
+              <div class="stats">
+                <div class="stat"><b>$8,420</b><span>Paid this month</span></div>
+                <div class="stat"><b>$1,150</b><span>Unpaid</span></div>
+                <div class="stat"><b>12</b><span>Invoices paid</span></div>
+              </div>
+              <div class="acard">
+                <div class="arow"><div><div class="t">Water heater replacement — Tom R.</div><div class="s">Paid by card · synced to QuickBooks</div></div><div style="text-align:right"><div class="t">$1,450</div><span class="pill">Paid</span></div></div>
+                <div class="arow"><div><div class="t">Furnace repair — Maria G.</div><div class="s">Texted yesterday · reminder queued</div></div><div style="text-align:right"><div class="t">$385</div><span class="pill warn">Unpaid</span></div></div>
+                <div class="arow"><div><div class="t">Drain cleaning — Ahmed K.</div><div class="s">Paid by card · synced to QuickBooks</div></div><div style="text-align:right"><div class="t">$220</div><span class="pill">Paid</span></div></div>
+              </div>
+            </div>
+
+            <div class="mpanel" data-p="mem" hidden>
+              <h4>Memberships</h4>
+              <div class="sub">Turn one-time customers into monthly recurring revenue.</div>
+              <div class="two">
+                <div class="stat"><b>$19<small style="font-size:.7rem;font-weight:600">/mo</small></b><span>Comfort Club · 2 tune-ups a year</span></div>
+                <div class="stat"><b>$39<small style="font-size:.7rem;font-weight:600">/mo</small></b><span>Total Care · 4 visits + priority</span></div>
+              </div>
+              <div class="acard" style="margin-top:12px">
+                <h5>Members · 23 active · $529/mo</h5>
+                <div class="arow"><div><div class="t">Diane W.</div><div class="s">Comfort Club · renews Nov 4</div></div><div><span class="pill">Active</span> <span class="pill grey">Visits 1 / 2</span></div></div>
+                <div class="arow"><div><div class="t">Marcus T.</div><div class="s">Total Care · renews Nov 19</div></div><div><span class="pill">Active</span> <span class="pill grey">Visits 0 / 4</span></div></div>
+                <div class="arow"><div><div class="t">Elena V.</div><div class="s">Comfort Club · card failed</div></div><div><span class="pill red">Past due</span></div></div>
+              </div>
+            </div>
+
+            <div class="mpanel" data-p="rep" hidden>
+              <h4>Reporting</h4>
+              <div class="sub">See what's actually making you money.</div>
+              <div class="two">
+                <div class="acard"><h5>Revenue by month</h5>
+                  <div class="bars">
+                    <div><b>$4.1k</b><i style="height:46%"></i>May</div>
+                    <div><b>$5.3k</b><i style="height:60%"></i>Jun</div>
+                    <div><b>$6.0k</b><i style="height:68%"></i>Jul</div>
+                    <div><b>$6.8k</b><i style="height:77%"></i>Aug</div>
+                    <div><b>$7.4k</b><i style="height:84%"></i>Sep</div>
+                    <div class="now"><b>$8.4k</b><i style="height:95%"></i>Oct</div>
+                  </div></div>
+                <div class="acard"><h5>The numbers behind it</h5>
+                  <div class="arow"><span>Jobs completed</span><b>31</b></div>
+                  <div class="arow"><span>Estimates approved</span><b>78%</b></div>
+                  <div class="arow"><span>Leads → booked</span><b>40%</b></div>
+                  <div class="arow"><span>Customers referred</span><b>9</b></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mpanel" data-p="rev" hidden>
+              <h4>Reviews</h4>
+              <div class="sub">Your Google reviews, pulled right into the dashboard.</div>
+              <div class="stats">
+                <div class="stat"><b>4.8 <span class="stars" style="font-size:.9rem">★★★★★</span></b><span>126 Google reviews</span></div>
+                <div class="stat"><b>14</b><span>Review requests sent</span></div>
+                <div class="stat"><b>6</b><span>New reviews this month</span></div>
+              </div>
+              <div class="acard">
+                <div class="arow" style="display:block"><div class="t">Karen M. <span class="stars">★★★★★</span></div><div class="s">"Showed up the same day, fixed our furnace in an hour. Texted us updates the whole way."</div></div>
+                <div class="arow" style="display:block"><div class="t">Josh P. <span class="stars">★★★★★</span></div><div class="s">"Booked at 10pm from a text. Unreal. Won't call anyone else."</div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <p class="caption">Sample data from a fictional business, "Peak HVAC." The layout is the real dashboard.</p>
+
+      <div class="why">
+        <div><b>Nothing to install</b><span>It's a private link. Open it on your phone or computer, bookmark it, done.</span></div>
+        <div><b>No more chasing money</b><span>Estimates, invoices and reminders send themselves. Payments land in your bank.</span></div>
+        <div><b>Real profit, not guesses</b><span>See what each job actually cost and made, then what each month adds up to.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CREW ============ -->
+  <section id="crew" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">For your crew</span>
+        <h2>Your techs get a simple job list, not another app.</h2>
+        <p>Each tech gets their own private link. They see only what they need: their jobs, one tap at a time.</p>
+      </div>
+      <div class="phones">
+        <div class="phone-col">
+          <div class="phone"><div class="scr"><div class="notch"></div>
+            <div class="head">Dave's jobs <small>Peak HVAC</small></div>
+            <div class="body">
+              <div class="jcard"><div class="t">Furnace not igniting</div><div class="s">Maria G. · Tue 9:00 AM</div>
+                <span class="mbtn">On my way</span><span class="mbtn f">Clock in</span></div>
+              <div class="jcard"><div class="t">AC tune-up</div><div class="s">Priya S. · Wed 3:30 PM</div>
+                <span class="mbtn">On my way</span></div>
+              <div class="jcard"><div class="t">Thermostat install</div><div class="s">Ahmed K. · Thu 11:00 AM</div></div>
+            </div></div></div>
+          <h4>Today's jobs, one tap away</h4>
+          <p>Only the jobs assigned to that tech. "On my way" texts the customer for them.</p>
+        </div>
+        <div class="phone-col">
+          <div class="phone"><div class="scr"><div class="notch"></div>
+            <div class="head">Furnace not igniting <small>In progress</small></div>
+            <div class="body">
+              <div class="jcard"><div class="t">Checklist</div>
+                <div class="chk" style="flex-direction:column;gap:5px;margin-top:8px"><span class="d">Shut off gas</span><span class="d">Inspect igniter</span><span class="d">Replace igniter</span><span>Test run &amp; leak check</span></div></div>
+              <div class="jcard"><div class="t">Job photos</div><div class="thumbs"><i></i><i></i><i></i></div>
+                <span class="mbtn">+ Add photo</span></div>
+              <div class="jcard"><div class="t">Expense</div><div class="s">Igniter assembly · $62.40</div><span class="mbtn">+ Add expense &amp; receipt</span></div>
+              <span class="big">Clock out</span>
+            </div></div></div>
+          <h4>Checklist, photos, receipts</h4>
+          <p>Check off each step, photograph the work, log what was spent. Labor cost calculates itself.</p>
+        </div>
+        <div class="phone-col">
+          <div class="phone"><div class="scr sms"><div class="notch"></div>
+            <div class="head">Peak HVAC <small>text message</small></div>
+            <div class="body">
+              <div class="bub in">Hey Maria! Dave from Peak HVAC is on the way to your appointment.</div>
+              <div class="bub in" style="margin-top:14px">Reminder: you're booked with Peak HVAC for Tue 9:00 AM. Reply here if anything's changed!</div>
+              <div class="bub out">Thanks, see you then</div>
+            </div></div></div>
+          <h4>The customer stays in the loop</h4>
+          <p>Reminders go out automatically. The "on my way" text goes out the second your tech taps it.</p>
+        </div>
+      </div>
+      <div class="why">
+        <div><b>No app store</b><span>It works from a text link on any phone.</span></div>
+        <div><b>Techs see only their jobs</b><span>Not your numbers, not other techs' work, not the full customer list.</span></div>
+        <div><b>Revoke access anytime</b><span>Someone leaves? One click and their link stops working.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CUSTOMER ============ -->
+  <section id="customer">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">For your customers</span>
+        <h2>What your customers see feels like a business 10x your size.</h2>
+        <p>No logins, no app downloads. Everything works from a text on their phone.</p>
+      </div>
+      <div class="phones">
+        <div class="phone-col">
+          <div class="phone"><div class="scr sms"><div class="notch"></div>
+            <div class="head">Peak HVAC <small>text message</small></div>
+            <div class="body">
+              <div class="bub in">Hey! This is Peak HVAC — sorry we missed your call. What can we help you with today?</div>
+              <div class="bub out">my AC is blowing warm air</div>
+              <div class="bub in">Ugh, not in this heat! I can get a tech out tomorrow at 10 AM or 2 PM. Which works?</div>
+              <div class="bub out">10</div>
+              <div class="bub book">You're booked for Tue 10:00 AM! Track it anytime: (your private link)</div>
+            </div></div></div>
+          <h4>Instant text-back &amp; booking</h4>
+          <p>A missed call turns into a conversation in seconds, then a booked job.</p>
+        </div>
+        <div class="phone-col">
+          <div class="phone"><div class="scr"><div class="notch"></div>
+            <div class="head">Book online <small>Peak HVAC</small></div>
+            <div class="body">
+              <div style="font-weight:800;margin-bottom:2px">Pick a time</div>
+              <div class="slot">Tue Oct 7 · 9:00 AM</div>
+              <div class="slot on">Tue Oct 7 · 11:30 AM</div>
+              <div class="slot">Wed Oct 8 · 8:00 AM</div>
+              <div class="slot">Wed Oct 8 · 2:00 PM</div>
+              <div class="jcard" style="margin-top:10px"><div class="s">Your name &amp; phone</div><div class="t">Priya S. · (801) 555-0142</div></div>
+              <span class="big">Book this time</span>
+            </div></div></div>
+          <h4>Self-booking link</h4>
+          <p>Put it on your website or Google profile. Customers pick a real open time, any hour.</p>
+        </div>
+        <div class="phone-col">
+          <div class="phone"><div class="scr"><div class="notch"></div>
+            <div class="head">Estimate <small>Peak HVAC</small></div>
+            <div class="body">
+              <div class="jcard"><div class="t">AC tune-up</div><div class="s">Included · $129</div></div>
+              <div class="jcard" style="background:var(--a-accent-soft)"><div class="t">✓ Filter upgrade</div><div class="s">Optional · $45</div></div>
+              <div class="jcard"><div class="t">○ Duct cleaning</div><div class="s">Optional · $180</div></div>
+              <div class="amt">$174</div>
+              <span class="big">Approve estimate</span><span class="big o">Decline</span>
+            </div></div></div>
+          <h4>Estimates they tap to approve</h4>
+          <p>They choose the extras they want, approve in one tap, and you're notified.</p>
+        </div>
+        <div class="phone-col">
+          <div class="phone"><div class="scr"><div class="notch"></div>
+            <div class="head">Your portal <small>Peak HVAC</small></div>
+            <div class="body">
+              <div class="jcard"><div class="t">Furnace not igniting</div><div class="s">Tue 9:00 AM</div><span class="pill dark" style="margin-top:6px">Done</span><div class="thumbs"><i></i><i></i></div></div>
+              <div class="jcard"><div class="t">Invoice · $385</div><div class="s">Furnace repair</div><span class="big" style="margin-top:8px">Pay now</span></div>
+              <div class="jcard"><div class="t">Comfort Club</div><div class="s">1 of 2 visits used · renews Nov 4</div></div>
+            </div></div></div>
+          <h4>One page for everything</h4>
+          <p>Their jobs, photos, invoices and membership — in a link that never expires.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REPS ============ -->
+  <section id="reps" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">For sales reps</span>
+        <h2>A rep's whole job, set up and ready to go.</h2>
+        <p>Reps watch the training, pass the quiz, and start calling the same day. No interview call, no waiting on us.</p>
+      </div>
+
+      <div class="browser">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">reclaim — Sales Hub</span></div>
+        <div class="app" id="repApp">
+          <div class="side">
+            <div class="mark">SALES HUB</div>
+            <button class="on" data-p="course">Course</button>
+            <button data-p="calls">Call List</button>
+            <button data-p="demo">Live Demo</button>
+            <button data-p="stats">My Stats</button>
+          </div>
+          <div class="main">
+
+            <div class="mpanel" data-p="course">
+              <h4>Training course</h4>
+              <div class="sub">Short video lessons, then a quick quiz. Pass it and you unlock the call list.</div>
+              <div class="acard">
+                <div style="display:flex;justify-content:space-between"><b>Progress</b><span class="s">7 of 10 lessons</span></div>
+                <div class="prog"><u style="width:70%"></u></div>
+                <div class="rep-grid" style="margin-top:8px">
+                  <div>
+                    <div class="lesson"><i>✓</i>Welcome</div>
+                    <div class="lesson"><i>✓</i>How you get paid</div>
+                    <div class="lesson"><i>✓</i>Mindset</div>
+                    <div class="lesson"><i>✓</i>The product</div>
+                    <div class="lesson"><i>✓</i>Your call list</div>
+                  </div>
+                  <div>
+                    <div class="lesson"><i>✓</i>The call script</div>
+                    <div class="lesson"><i>✓</i>Handling objections</div>
+                    <div class="lesson"><i class="todo">·</i>Closing the sale</div>
+                    <div class="lesson"><i class="todo">·</i>The rules</div>
+                    <div class="lesson"><i class="todo">·</i>Tour of the software</div>
+                  </div>
+                </div>
+              </div>
+              <div class="acard"><b>Final quiz</b> <span class="pill grey">Unlocks after lesson 10</span><div class="s" style="margin-top:3px">Score 80% or higher to start calling. Retake as many times as you need.</div></div>
+            </div>
+
+            <div class="mpanel" data-p="calls" hidden>
+              <h4>Call list</h4>
+              <div class="sub">Real home-service businesses, with the script one tap away.</div>
+              <div class="acard">
+                <div class="arow"><div><div class="t">Wasatch Plumbing &amp; Drain</div><div class="s">Plumbing · Salt Lake City</div></div><div><span class="pill grey">New</span> <span class="pill dark">Call</span></div></div>
+                <div class="arow"><div><div class="t">Summit Electric</div><div class="s">Electrical · Provo</div></div><div><span class="pill warn">Callback Thu 2pm</span></div></div>
+                <div class="arow"><div><div class="t">Red Rock Heating &amp; Air</div><div class="s">HVAC · St. George</div></div><div><span class="pill">Demo sent</span></div></div>
+                <div class="arow"><div><div class="t">Bear Lake Roofing</div><div class="s">Roofing · Logan</div></div><div><span class="pill dark">Closed won</span></div></div>
+              </div>
+              <div class="s">Calls ring your own cell from a number Reclaim sets up for you automatically.</div>
+            </div>
+
+            <div class="mpanel" data-p="demo" hidden>
+              <h4>Live demo</h4>
+              <div class="sub">On the call, send the owner a real text — they watch it happen on their own phone.</div>
+              <div class="acard">
+                <h5>Send a demo to Wasatch Plumbing</h5>
+                <div class="arow" style="border:0;gap:6px"><span class="pill grey">(801) 555-0188</span><span class="pill dark">Send demo text</span></div>
+                <div class="msg a" style="margin-left:0"><small>They receive</small>Hey! This is Wasatch Plumbing — sorry we missed your call. What can we help you with today?</div>
+                <div class="s" style="margin-top:8px">That's the moment most owners say "okay, how do I sign up?"</div>
+              </div>
+            </div>
+
+            <div class="mpanel" data-p="stats" hidden>
+              <h4>My stats</h4>
+              <div class="sub">Commission, pipeline, and where you rank.</div>
+              <div class="stats">
+                <div class="stat"><b>$1,050</b><span>Earned this month</span></div>
+                <div class="stat"><b>6</b><span>Deals closed</span></div>
+                <div class="stat"><b>#2</b><span>On the leaderboard</span></div>
+              </div>
+              <div class="acard"><h5>Your pipeline</h5>
+                <div class="bars" style="height:100px">
+                  <div><b>38</b><i style="height:100%"></i>Called</div>
+                  <div><b>14</b><i style="height:40%"></i>Demo</div>
+                  <div><b>9</b><i style="height:28%"></i>Callback</div>
+                  <div class="now"><b>6</b><i style="height:18%"></i>Won</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <p class="caption">Sample numbers. Real tool.</p>
+
+      <div class="why">
+        <div><b>Onboard with no call</b><span>Sign the agreement, watch the course, pass the quiz. Done.</span></div>
+        <div><b>Calls from your own phone</b><span>No dialer to buy. Your calling number is set up automatically.</span></div>
+        <div><b>Paid per closed sale</b><span>$150 · $250 · $400 depending on the plan, with no cap.</span></div>
+      </div>
+      <p style="text-align:center;margin-top:30px"><a href="careers.html" class="btn btn-primary">See the sales role →</a></p>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Want to see it with your own business?</h2>
+      <p>Pick a plan and we'll get you set up.</p>
+      <div class="row">
+        <a href="pricing.html" class="btn btn-primary">See plans &amp; get started</a>
+        <a href="features.html" class="btn btn-ghost">Read the full feature list</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <a href="index.html" class="brand"><img class="logo" src="reclaim-logo-light.svg" alt="Reclaim"></a>
+    <nav>
+      <a href="index.html#how">How it works</a>
+      <a href="tour.html">See it in action</a>
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="careers.html">Sell With Us</a>
+      <a href="https://g.page/r/CSs_PDpTrg_VEAI/review" target="_blank" rel="noopener">Rate us</a>
+      <a href="sms-terms.html">SMS Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="cookie.html">Cookie Policy</a>
+    </nav>
+    <p class="copy">© 2026 Reclaim. Automated text-back for local home-services businesses.</p>
+  </div>
+</footer>
+
+<script>
+  // Click-through for the two product mockups. Without JS the first tab just stays open.
+  document.querySelectorAll('.app').forEach(function(app){
+    var btns = app.querySelectorAll('.side button');
+    var panels = app.querySelectorAll('.mpanel');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.classList.toggle('on', x === b); });
+        panels.forEach(function(p){ p.hidden = p.getAttribute('data-p') !== b.getAttribute('data-p'); });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
