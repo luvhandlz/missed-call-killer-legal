@@ -166,6 +166,19 @@
   .prog{height:8px;background:var(--a-bg);border:1px solid var(--a-line);border-radius:99px;overflow:hidden;margin:6px 0 4px}
   .prog u{display:block;height:100%;background:var(--a-accent);text-decoration:none}
 
+
+  /* ---------- real footage ---------- */
+  .live{margin-top:44px;text-align:center}
+  .live .tag{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.74rem;letter-spacing:.11em;text-transform:uppercase;color:var(--go);background:#fcfaf5;border:1px solid var(--line);padding:6px 14px;border-radius:30px}
+  .live .tag::before{content:"";width:8px;height:8px;border-radius:50%;background:#d23b2b;box-shadow:0 0 0 4px rgba(210,59,43,.18)}
+  .live h3{font-size:1.35rem;margin:14px 0 6px;font-weight:800;letter-spacing:-.02em}
+  .live p.note{color:var(--ink-soft);max-width:60ch;margin:0 auto 22px;font-size:.98rem}
+  .live .browser video{display:block;width:100%;height:auto;background:#ddd5c2}
+  .live .phone video{display:block;width:100%;height:auto;border-radius:28px;background:#ddd5c2}
+  .live .phone{margin:0 auto}
+  .live .phone.sm{width:262px}
+  .live .browser{max-width:960px;margin:0 auto}
+
   .cta{background:var(--navy);color:#f5f2ea;text-align:center}
   .cta h2{font-size:clamp(1.7rem,3.4vw,2.3rem);font-weight:800}
   .cta p{margin-top:12px;color:#c9c3b8;font-size:1.08rem}
@@ -267,7 +280,7 @@
           <div class="side">
             <div class="mark">RECLAIM</div>
             <button class="on" data-p="jobs">Jobs</button>
-            <button data-p="convo">Conversations</button>
+            <button data-p="convo">Activity</button>
             <button data-p="est">Estimates</button>
             <button data-p="inv">Invoices</button>
             <button data-p="mem">Memberships</button>
@@ -305,7 +318,7 @@
             </div>
 
             <div class="mpanel" data-p="convo" hidden>
-              <h4>Conversations</h4>
+              <h4>Activity</h4>
               <div class="sub">Every text thread, saved and readable. The AI flags the ones that need you.</div>
               <div class="acard">
                 <div class="arow" style="display:block">
@@ -419,7 +432,17 @@
           </div>
         </div>
       </div>
-      <p class="caption">Sample data from a fictional business, "Peak HVAC." The layout is the real dashboard.</p>
+      <p class="caption">A simplified preview. The footage below is the real, working dashboard.</p>
+      <div class="live">
+        <span class="tag">Real footage</span>
+        <h3>Now watch the real dashboard.</h3>
+        <p class="note">Screen recording of the live product, using a sample business called Peak HVAC. Click the play button to watch with controls.</p>
+        <div class="browser">
+          <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">reclaim — Peak HVAC dashboard</span></div>
+          <video src="media/tour-dashboard.mp4" poster="media/tour-dashboard.jpg" muted loop playsinline preload="none" controls></video>
+        </div>
+      </div>
+
 
       <div class="why">
         <div><b>Nothing to install</b><span>It's a private link. Open it on your phone or computer, bookmark it, done.</span></div>
@@ -476,6 +499,13 @@
           <h4>The customer stays in the loop</h4>
           <p>Reminders go out automatically. The "on my way" text goes out the second your tech taps it.</p>
         </div>
+      </div>
+      
+      <div class="live">
+        <span class="tag">Real footage</span>
+        <h3>A tech working a job, live.</h3>
+        <p class="note">Dave checks off his list, attaches a photo of the work, and clocks out — all from his phone, no app installed.</p>
+        <div class="phone sm"><video src="media/tour-crew.mp4" poster="media/tour-crew.jpg" muted loop playsinline preload="none" controls></video></div>
       </div>
       <div class="why">
         <div><b>No app store</b><span>It works from a text link on any phone.</span></div>
@@ -546,6 +576,13 @@
           <h4>One page for everything</h4>
           <p>Their jobs, photos, invoices and membership — in a link that never expires.</p>
         </div>
+      </div>
+
+      <div class="live">
+        <span class="tag">Real footage</span>
+        <h3>A customer approving an estimate.</h3>
+        <p class="note">Open the link from a text, see the work, uncheck the extra you don't want, and tap approve. The total updates and you're notified.</p>
+        <div class="phone sm"><video src="media/tour-customer.mp4" poster="media/tour-customer.jpg" muted loop playsinline preload="none" controls></video></div>
       </div>
     </div>
   </section>
@@ -641,7 +678,17 @@
           </div>
         </div>
       </div>
-      <p class="caption">Sample numbers. Real tool.</p>
+      <p class="caption">A simplified preview. The footage below is the real Sales Hub.</p>
+      <div class="live">
+        <span class="tag">Real footage</span>
+        <h3>And here it is running.</h3>
+        <p class="note">A rep logging in, finishing the course, and opening the call list. Sample prospects and a sample rep account.</p>
+        <div class="browser">
+          <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">reclaim — Sales Hub</span></div>
+          <video src="media/tour-hub.mp4" poster="media/tour-hub.jpg" muted loop playsinline preload="none" controls></video>
+        </div>
+      </div>
+
 
       <div class="why">
         <div><b>Onboard with no call</b><span>Sign the agreement, watch the course, pass the quiz. Done.</span></div>
@@ -696,6 +743,12 @@
       });
     });
   });
+
+  // Footage: start playing (muted) only while it's on screen.
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ var v=e.target; if(e.isIntersecting){ v.play().catch(function(){}); } else { v.pause(); } }); }, {threshold:0.5});
+    document.querySelectorAll('.live video').forEach(function(v){ io.observe(v); });
+  }
 </script>
 
 </body>
