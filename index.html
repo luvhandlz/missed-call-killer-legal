@@ -57,6 +57,27 @@
     .nav .btn{padding:9px 14px;font-size:.85rem}
   }
 
+
+  /* Hero proof points + savings calculator */
+  .proof{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:9px}
+  .proof li{position:relative;padding-left:28px;font-weight:600;color:var(--ink-soft);font-size:1rem}
+  .proof li::before{content:"";position:absolute;left:0;top:.28em;width:18px;height:18px;border-radius:50%;background:#1e5a48 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f2ea' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat}
+  .proof-price{margin-top:16px;font-size:.92rem;color:var(--ink-mute);font-weight:600}
+  .calc{padding:64px 0}
+  .calc-card{max-width:880px;margin:0 auto;background:#fcfaf5;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+  .calc-card h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.03em}
+  .calc-card .lead{margin-top:10px;color:var(--ink-soft)}
+  .calc-fields{display:grid;gap:14px;margin-top:20px}
+  .calc-fields label{display:block;font-weight:700;font-size:.85rem;margin-bottom:5px}
+  .calc-fields input,.calc-fields select{width:100%;font:inherit;font-size:1.05rem;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff}
+  .calc-out{background:#181818;color:#f5f2ea;border-radius:18px;padding:28px;text-align:center}
+  .calc-out .k{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#a4a09a;font-weight:700}
+  .calc-out .v{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:850;letter-spacing:-.03em;margin:6px 0;color:#fff}
+  .calc-out .m{color:#c9c3b8;font-size:.95rem}
+  .calc-out .btn{margin-top:18px}
+  .calc-fine{margin-top:12px;font-size:.78rem;color:#8a857c}
+  @media (max-width:760px){.calc-card{grid-template-columns:1fr;padding:24px}}
+  @media (min-width:901px){.hero-grid>.try-demo,.hero-grid>.try-demo-cta{grid-column:2}.hero-grid>div:first-child{grid-row:1 / span 3}}
   /* Hero */
   .hero{background:radial-gradient(680px 460px at 10% -8%,rgba(220,207,194,.55),transparent 62%),radial-gradient(620px 500px at 100% 8%,rgba(164,160,154,.28),transparent 62%),linear-gradient(180deg,#faf8f2,#efeae0);color:var(--ink);padding:90px 0 98px;overflow:hidden}
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
@@ -238,6 +259,12 @@
           <a href="pricing.html" class="btn btn-primary btn-lg">See plans &amp; get started</a>
           <a href="tour.html" class="btn btn-ghost btn-lg">See it in action</a>
         </div>
+        <ul class="proof">
+          <li>Texts every missed caller back in under a minute</li>
+          <li>Books the job straight into your calendar</li>
+          <li>Runs your crew, invoices and reviews from one dashboard</li>
+        </ul>
+        <p class="proof-price">Plans from $149/mo &middot; no contract &middot; we set it up for you</p>
       </div>
 
       <!-- Phone conversation mockup -->
@@ -283,6 +310,32 @@
       <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7m0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5"/></svg> Proudly serving Davis County, Utah</span>
     </div>
   </div>
+
+  <!-- WHAT A MISSED CALL COSTS -->
+  <section class="calc" id="calc">
+    <div class="wrap">
+      <div class="calc-card">
+        <div>
+          <span class="eyebrow">Run your own numbers</span>
+          <h2 style="margin-top:12px">What are missed calls costing you?</h2>
+          <p class="lead">Plug in your own numbers. This is an estimate, not a promise &mdash; your results depend on your business.</p>
+          <div class="calc-fields">
+            <div><label for="cCalls">Calls you miss per week</label><input id="cCalls" type="number" min="0" max="500" value="10" inputmode="numeric"></div>
+            <div><label for="cJob">Average job is worth ($)</label><input id="cJob" type="number" min="0" max="100000" value="400" inputmode="numeric"></div>
+            <div><label for="cShare">How many of those could you win back?</label>
+              <select id="cShare"><option value="0.1">About 1 in 10</option><option value="0.25" selected>About 1 in 4</option><option value="0.4">About 4 in 10</option></select></div>
+          </div>
+        </div>
+        <div class="calc-out">
+          <div class="k">Jobs you could win back</div>
+          <div class="v" id="cMoney">$4,330</div>
+          <div class="m" id="cMath">about 11 jobs a month &middot; plans start at $149/mo</div>
+          <a href="pricing.html" class="btn btn-primary">See plans &amp; get started</a>
+          <p class="calc-fine">Based on about 4.3 weeks a month. Win-back rate is your assumption, not a guarantee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- PROBLEM -->
   <section class="problem">
@@ -667,5 +720,21 @@
   })();
 </script>
 
+<script>
+  (function(){
+    var calls=document.getElementById('cCalls'), job=document.getElementById('cJob'), share=document.getElementById('cShare');
+    if(!calls) return;
+    var money=document.getElementById('cMoney'), math=document.getElementById('cMath');
+    function fmt(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+    function update(){
+      var c=Math.max(0,parseFloat(calls.value)||0), j=Math.max(0,parseFloat(job.value)||0), r=parseFloat(share.value)||0.25;
+      var jobs=c*4.33*r, total=jobs*j;
+      money.textContent=fmt(total);
+      math.innerHTML='about '+Math.round(jobs)+' job'+(Math.round(jobs)===1?'':'s')+' a month &middot; plans start at $149/mo';
+    }
+    ['input','change'].forEach(function(ev){ [calls,job,share].forEach(function(el){ el.addEventListener(ev,update); }); });
+    update();
+  })();
+</script>
 </body>
 </html>
