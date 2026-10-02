@@ -72,7 +72,7 @@
   .calc-fields input,.calc-fields select{width:100%;font:inherit;font-size:1.05rem;padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff}
   .calc-out{background:#181818;color:#f5f2ea;border-radius:18px;padding:28px;text-align:center}
   .calc-out .k{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#a4a09a;font-weight:700}
-  .calc-out .v{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:850;letter-spacing:-.03em;margin:6px 0;color:#fff}
+  .calc-out .v{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:850;letter-spacing:-.03em;margin:6px 0;color:#5fd08a}
   .calc-out .m{color:#c9c3b8;font-size:.95rem}
   .calc-out .btn{margin-top:18px}
   .calc-fine{margin-top:12px;font-size:.78rem;color:#8a857c}
@@ -327,8 +327,8 @@
           </div>
         </div>
         <div class="calc-out">
-          <div class="k">Jobs you could win back</div>
-          <div class="v" id="cMoney">$4,330</div>
+          <div class="k">Extra money you could earn</div>
+          <div class="v" id="cMoney">$4,330+</div>
           <div class="m" id="cMath">about 11 jobs a month &middot; plans start at $149/mo</div>
           <a href="pricing.html" class="btn btn-primary">See plans &amp; get started</a>
           <p class="calc-fine">Based on about 4.3 weeks a month. Win-back rate is your assumption, not a guarantee.</p>
@@ -729,7 +729,7 @@
     function update(){
       var c=Math.max(0,parseFloat(calls.value)||0), j=Math.max(0,parseFloat(job.value)||0), r=parseFloat(share.value)||0.25;
       var jobs=c*4.33*r, total=jobs*j;
-      money.textContent=fmt(total);
+      money.textContent=fmt(total)+'+';
       math.innerHTML='about '+Math.round(jobs)+' job'+(Math.round(jobs)===1?'':'s')+' a month &middot; plans start at $149/mo';
     }
     ['input','change'].forEach(function(ev){ [calls,job,share].forEach(function(el){ el.addEventListener(ev,update); }); });

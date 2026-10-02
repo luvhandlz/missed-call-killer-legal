@@ -96,7 +96,7 @@
   .est-fields input,.est-fields select{width:100%;font:inherit;font-size:.95rem;padding:9px 11px;border-radius:10px;border:1.5px solid var(--line);background:#fff}
   .est-fields .full{grid-column:1 / -1}
   .est-out{margin-top:14px;background:#181818;color:#f5f2ea;border-radius:14px;padding:16px 18px;text-align:center}
-  .est-out .v{font-size:1.9rem;font-weight:850;letter-spacing:-.03em;color:#fff}
+  .est-out .v{font-size:1.9rem;font-weight:850;letter-spacing:-.03em;color:#5fd08a}
   .est-out .m{font-size:.84rem;color:#c9c3b8;margin-top:2px}
   .est-fine{margin-top:8px;font-size:.72rem;color:var(--ink-mute)}
   /* the plan box is taller now; on short screens let it scroll with the page instead of sticking */
@@ -140,8 +140,8 @@
             <select id="cShare"><option value="0.1">About 1 in 10</option><option value="0.25" selected>About 1 in 4</option><option value="0.4">About 4 in 10</option></select></div>
         </div>
         <div class="est-out">
-          <div class="v" id="cMoney">$4,330</div>
-          <div class="m" id="cMath">a month in jobs you could win back</div>
+          <div class="v" id="cMoney">$4,330+ / mo</div>
+          <div class="m" id="cMath">extra money a month from jobs you could win back</div>
         </div>
         <p class="est-fine">About 4.3 weeks a month. The win-back rate is your assumption, not a guarantee.</p>
       </div>
@@ -439,7 +439,7 @@
       var c=Math.max(0,parseFloat(calls.value)||0), j=Math.max(0,parseFloat(job.value)||0), r=parseFloat(share.value)||0.25;
       var jobs=c*4.33*r, total=jobs*j;
       var plan=parseFloat(((planPrice&&planPrice.textContent)||'').replace(/[^0-9.]/g,''))||0;
-      money.textContent=fmt(total)+' / mo';
+      money.textContent=fmt(total)+'+ / mo';
       var line='about '+Math.round(jobs)+' job'+(Math.round(jobs)===1?'':'s')+' a month';
       if(plan>0 && total>0) line+=' &middot; your plan is '+fmt(plan)+'/mo';
       math.innerHTML=line;
