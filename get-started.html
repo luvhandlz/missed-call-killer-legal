@@ -86,6 +86,21 @@
   input[type="time"]{cursor:pointer}
   .section-divider{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
   .section-divider .lbl{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
+
+  /* Compact savings estimate inside the plan summary */
+  .est{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+  .est h3{font-size:1rem;font-weight:800}
+  .est .est-sub{margin-top:4px;font-size:.82rem;color:var(--ink-mute)}
+  .est-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  .est-fields label{display:block;font-size:.74rem;font-weight:700;margin-bottom:4px}
+  .est-fields input,.est-fields select{width:100%;font:inherit;font-size:.95rem;padding:9px 11px;border-radius:10px;border:1.5px solid var(--line);background:#fff}
+  .est-fields .full{grid-column:1 / -1}
+  .est-out{margin-top:14px;background:#181818;color:#f5f2ea;border-radius:14px;padding:16px 18px;text-align:center}
+  .est-out .v{font-size:1.9rem;font-weight:850;letter-spacing:-.03em;color:#fff}
+  .est-out .m{font-size:.84rem;color:#c9c3b8;margin-top:2px}
+  .est-fine{margin-top:8px;font-size:.72rem;color:var(--ink-mute)}
+  /* the plan box is taller now; on short screens let it scroll with the page instead of sticking */
+  @media (max-height:950px){.summary{position:static}}
 </style>
 </head>
 <body>
@@ -115,6 +130,21 @@
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No long-term contract</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Keep your number</li>
       </ul>
+      <div class="est">
+        <h3>What could this earn back for you?</h3>
+        <p class="est-sub">Your own numbers &mdash; an estimate, not a promise.</p>
+        <div class="est-fields">
+          <div><label for="cCalls">Missed calls / week</label><input id="cCalls" type="number" min="0" max="500" value="10" inputmode="numeric"></div>
+          <div><label for="cJob">Average job ($)</label><input id="cJob" type="number" min="0" max="100000" value="400" inputmode="numeric"></div>
+          <div class="full"><label for="cShare">How many could you win back?</label>
+            <select id="cShare"><option value="0.1">About 1 in 10</option><option value="0.25" selected>About 1 in 4</option><option value="0.4">About 4 in 10</option></select></div>
+        </div>
+        <div class="est-out">
+          <div class="v" id="cMoney">$4,330</div>
+          <div class="m" id="cMath">a month in jobs you could win back</div>
+        </div>
+        <p class="est-fine">About 4.3 weeks a month. The win-back rate is your assumption, not a guarantee.</p>
+      </div>
       <p class="switch">Wrong plan? <a href="pricing.html">Choose a different one →</a></p>
     </aside>
 
@@ -398,6 +428,27 @@
     // Safety: never leave them stuck if the network hangs.
     setTimeout(goToCheckout, 3500);
   });
+</script>
+<script>
+  (function(){
+    var calls=document.getElementById('cCalls'), job=document.getElementById('cJob'), share=document.getElementById('cShare');
+    if(!calls) return;
+    var money=document.getElementById('cMoney'), math=document.getElementById('cMath'), planPrice=document.getElementById('planPrice');
+    function fmt(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+    function update(){
+      var c=Math.max(0,parseFloat(calls.value)||0), j=Math.max(0,parseFloat(job.value)||0), r=parseFloat(share.value)||0.25;
+      var jobs=c*4.33*r, total=jobs*j;
+      var plan=parseFloat(((planPrice&&planPrice.textContent)||'').replace(/[^0-9.]/g,''))||0;
+      money.textContent=fmt(total)+' / mo';
+      var line='about '+Math.round(jobs)+' job'+(Math.round(jobs)===1?'':'s')+' a month';
+      if(plan>0 && total>0) line+=' &middot; your plan is '+fmt(plan)+'/mo';
+      math.innerHTML=line;
+    }
+    ['input','change'].forEach(function(ev){ [calls,job,share].forEach(function(el){ el.addEventListener(ev,update); }); });
+    update();
+    // the plan price is filled in by the page's own script; re-run once that has happened
+    setTimeout(update,300);
+  })();
 </script>
 </body>
 </html>
