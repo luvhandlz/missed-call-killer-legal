@@ -63,6 +63,9 @@
   .proof li{position:relative;padding-left:28px;font-weight:600;color:var(--ink-soft);font-size:1rem}
   .proof li::before{content:"";position:absolute;left:0;top:.28em;width:18px;height:18px;border-radius:50%;background:#1e5a48 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f2ea' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat}
   .proof-price{margin-top:16px;font-size:.92rem;color:var(--ink-mute);font-weight:600}
+  .adsec{padding:56px 0 8px}
+  .adframe{max-width:920px;margin:26px auto 0;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);background:#181818}
+  .adframe video{display:block;width:100%;aspect-ratio:16/9;background:#181818}
   .calc{padding:64px 0}
   .calc-card{max-width:880px;margin:0 auto;background:#fcfaf5;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
   .calc-card h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.03em}
@@ -310,6 +313,17 @@
       <span class="tag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7m0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5"/></svg> Proudly serving Davis County, Utah</span>
     </div>
   </div>
+
+  <!-- 30-SECOND AD -->
+  <section class="adsec" id="watch">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Watch it in 30 seconds</span>
+        <h2 style="margin-top:10px">A missed call, turned into a booked job.</h2>
+      </div>
+      <div class="adframe"><video src="media/reclaim-ad.mp4" poster="media/reclaim-ad.jpg" playsinline preload="none" controls></video></div>
+    </div>
+  </section>
 
   <!-- WHAT A MISSED CALL COSTS -->
   <section class="calc" id="calc">
