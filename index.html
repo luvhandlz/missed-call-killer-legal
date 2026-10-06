@@ -657,44 +657,9 @@
     if(!btn) return;
     var input = document.getElementById('tryDemoPhone');
     var status = document.getElementById('tryDemoStatus');
-    var thread = document.getElementById('demoThread');
     var cta = document.getElementById('tryDemoCta');
     var API = 'https://missed-call-killer-production.up.railway.app';
-    var POLL_MS = 2000;
-    var MAX_POLLS = 300; // ~10 minutes — an abandoned tab stops polling instead of running forever
-    var pollTimer = null;
-    var renderedCount = 0;
-
-    function addBubble(role, body){
-      var div = document.createElement('div');
-      div.className = 'bubble ' + (role === 'user' ? 'out' : 'in');
-      div.textContent = body;
-      thread.appendChild(div);
-    }
-
-    function poll(pollsLeft){
-      if(pollsLeft <= 0){
-        status.textContent = 'Demo session ended — refresh to try again.';
-        status.className = 'status';
-        return;
-      }
-      fetch(API + '/api/public-demo/' + poll.token + '/messages')
-        .then(function(r){ return r.ok ? r.json() : null; })
-        .then(function(data){
-          if(data && data.messages){
-            for(var i = renderedCount; i < data.messages.length; i++){
-              addBubble(data.messages[i].role, data.messages[i].body);
-            }
-            if(data.messages.length > renderedCount){
-              renderedCount = data.messages.length;
-              thread.scrollTop = thread.scrollHeight;
-            }
-            if(renderedCount >= 3) cta.style.display = 'block';
-          }
-        })
-        .catch(function(){ /* transient network hiccup — just try again next tick */ })
-        .then(function(){ pollTimer = setTimeout(function(){ poll(pollsLeft - 1); }, POLL_MS); });
-    }
+    var ctaTimer = null;
 
     btn.addEventListener('click', function(){
       var phone = input.value.trim();
@@ -714,13 +679,12 @@
       }).then(function(res){ return res.json().then(function(data){ return {ok: res.ok, data: data}; }); })
         .then(function(result){
           if(!result.ok) throw new Error(result.data && result.data.message);
-          status.textContent = 'Sent! Watch it happen live below ↓';
+          // The conversation happens in the visitor's own Messages app, not on
+          // this page — the phone mock above stays as the static example.
+          status.textContent = 'Sent! Check your text messages and reply like a customer would.';
           status.className = 'status ok';
-          if(pollTimer) clearTimeout(pollTimer);
-          thread.innerHTML = '';
-          renderedCount = 0;
-          poll.token = result.data.token;
-          poll(MAX_POLLS);
+          if(ctaTimer) clearTimeout(ctaTimer);
+          ctaTimer = setTimeout(function(){ cta.style.display = 'block'; }, 30000);
         }).catch(function(err){
           status.textContent = (err && err.message) || 'Something went wrong — try again in a bit.';
           status.className = 'status err';
